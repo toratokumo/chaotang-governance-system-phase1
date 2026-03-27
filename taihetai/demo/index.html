@@ -228,6 +228,7 @@
               <span class="source-tag">首屏阶段条</span>
               <span id="projectHeroSourceTag" class="source-tag" style="margin-left:8px;">数据来源：本地真实数据文件</span>
               <span id="projectHeroRefreshTag" class="source-tag" style="margin-left:8px;">最近刷新：--</span>
+              <span id="projectHeroAlertTag" class="warn-tag" style="margin-left:8px;">拉取状态：正常</span>
             </div>
           </div>
           <div id="projectHeroName" style="font-size:20px; font-weight:700; margin-bottom:6px;">--</div>
@@ -402,10 +403,14 @@
         const data = await response.json();
         renderData(data);
         refreshError.classList.add('hidden');
+        document.getElementById('projectHeroAlertTag').textContent = '拉取状态：正常';
+        document.getElementById('projectHeroAlertTag').className = 'warn-tag';
         if (refreshTimer) clearTimeout(refreshTimer);
         refreshTimer = setTimeout(loadData, data.refreshIntervalMs || 15000);
       } catch (error) {
         refreshError.classList.remove('hidden');
+        document.getElementById('projectHeroAlertTag').textContent = '拉取状态：失败';
+        document.getElementById('projectHeroAlertTag').className = 'warn-tag alert';
         if (refreshTimer) clearTimeout(refreshTimer);
         refreshTimer = setTimeout(loadData, 15000);
       }
