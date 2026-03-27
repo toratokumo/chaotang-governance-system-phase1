@@ -132,6 +132,7 @@
         <div>
           <div class="eyebrow">朝堂总览</div>
           <h2 style="margin:6px 0 6px;">陛下可一眼查看项目做到哪一步</h2>
+          <div id="heroStageBanner" class="warn-tag" style="margin-bottom:8px;">当前项目做到哪一步：--</div>
           <span id="dataSourceTag" class="source-tag">数据来源：本地真实数据文件</span>
         </div>
         <div style="text-align:right;">
@@ -306,6 +307,7 @@
 
     function renderData(data) {
       document.getElementById('dataSourceTag').textContent = `数据来源：${data.source}`;
+      document.getElementById('heroStageBanner').textContent = `当前项目做到哪一步：${data.featuredProject.stage}｜${data.featuredProject.status === 'done' ? '已完成' : data.featuredProject.status === 'alert' ? '待推进' : '进行中'}｜下一步：${data.featuredProject.nextAction}`;
       document.getElementById('lastUpdatedText').textContent = data.lastUpdated;
       document.getElementById('refreshIntervalText').textContent = `${Math.floor(data.refreshIntervalMs / 1000)} 秒`;
       document.getElementById('metricTotal').textContent = data.summary.total;
