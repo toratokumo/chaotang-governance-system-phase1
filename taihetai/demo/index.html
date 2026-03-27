@@ -142,6 +142,10 @@
               <div class="cell"><div class="label">下一步动作</div><div id="heroNextValue" class="value">--</div></div>
             </div>
           </div>
+          <div class="progress-wrap" style="margin-top:12px;">
+            <div class="progress-bar"><div id="heroTopProgressBar" class="progress-fill" style="width:0%"></div></div>
+            <div class="progress-meta"><span id="heroTopProgressText">当前进度：--</span><span id="heroTopStageText">当前卡点：--</span></div>
+          </div>
           <span id="dataSourceTag" class="source-tag">数据来源：本地真实数据文件</span>
         </div>
         <div style="text-align:right;">
@@ -322,6 +326,9 @@
       document.getElementById('heroBlockedValue').textContent = data.featuredProject.blocked ? '是' : '否';
       document.getElementById('heroUpdatedValue').textContent = data.lastUpdated;
       document.getElementById('heroNextValue').textContent = data.featuredProject.nextAction;
+      document.getElementById('heroTopProgressBar').style.width = `${data.featuredProject.progress}%`;
+      document.getElementById('heroTopProgressText').textContent = `当前进度：${data.featuredProject.progress}%`;
+      document.getElementById('heroTopStageText').textContent = `当前卡点：${data.featuredProject.stage}`;
       document.getElementById('lastUpdatedText').textContent = data.lastUpdated;
       document.getElementById('refreshIntervalText').textContent = `${Math.floor(data.refreshIntervalMs / 1000)} 秒`;
       document.getElementById('metricTotal').textContent = data.summary.total;
