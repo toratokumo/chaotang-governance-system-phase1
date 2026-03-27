@@ -429,6 +429,7 @@
       document.getElementById('heroInProgressCountValue').textContent = `${data.summary.inProgress} 个进行中`;
       document.getElementById('heroBlockedCountValue').textContent = `${data.summary.blocked} 个阻塞`;
       document.getElementById('heroDelayedCountValue').textContent = `${data.summary.delayed || 0} 个延期`;
+      document.getElementById('heroDoneCountValue').textContent = `${data.summary.done} 个已完成`;
       document.getElementById('heroTopProgressBar').style.width = `${data.featuredProject.progress}%`;
       document.getElementById('heroTopProgressText').textContent = `当前进度：${data.featuredProject.progress}%`;
       document.getElementById('heroTopStageText').textContent = `当前卡点：${data.featuredProject.stage}`;
