@@ -313,6 +313,23 @@
     }
 
     function renderProjectHero(project) {
+      if (!project) {
+        document.getElementById('projectHeroName').textContent = '暂无项目数据';
+        document.getElementById('projectHeroMeta').textContent = '当前暂无可展示的项目进度数据。';
+        document.getElementById('projectHeroCurrentNode').textContent = '--';
+        document.getElementById('projectHeroNextMilestone').textContent = '--';
+        document.getElementById('projectHeroRiskFlag').textContent = '暂无数据';
+        document.getElementById('projectHeroUpdatedAt').textContent = '--';
+        document.getElementById('projectHeroPhases').innerHTML = '<span class="phase-node">等待数据</span>';
+        document.getElementById('projectHeroRefreshTag').textContent = '最近刷新：--';
+        document.getElementById('projectHeroBlockedTag').textContent = '是否阻塞：--';
+        document.getElementById('projectHeroDelayedTag').textContent = '延期标记：--';
+        document.getElementById('projectHeroMilestoneTimeTag').textContent = '下一里程碑时间：--';
+        document.getElementById('projectHeroOwnerTag').textContent = '负责人：--';
+        document.getElementById('projectHeroLatestUpdateTag').textContent = '最近更新内容：--';
+        document.getElementById('projectHeroNextActionTag').textContent = '下一步动作：--';
+        return;
+      }
       document.getElementById('projectHeroName').textContent = project.name;
       document.getElementById('projectHeroMeta').textContent = `当前阶段：${project.stage} · 当前状态：${project.statusLabel} · 负责人：${project.owner}`;
       document.getElementById('projectHeroCurrentNode').textContent = project.phaseFlow?.[project.currentPhaseIndex] || project.stage;
@@ -335,6 +352,11 @@
     }
 
     function renderProjects(projects) {
+      if (!projects || projects.length === 0) {
+        renderProjectHero(null);
+        document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">暂无项目数据，请稍后刷新或检查数据源。</div></div>';
+        return;
+      }
       renderProjectHero(projects[0]);
       document.getElementById('projectList').innerHTML = projects.map(project => `
         <div class="project-item">
