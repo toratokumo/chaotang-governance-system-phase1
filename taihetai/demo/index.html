@@ -74,6 +74,10 @@
     .project-item { padding:16px; border:1px solid var(--border); border-radius:16px; background:rgba(255,255,255,0.02); }
     .project-item-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:10px; }
     .kv { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:10px; }
+    .hero-kv { grid-template-columns:repeat(3, 1fr); margin-top:12px; }
+    .hero-kv .cell { border-color: rgba(212,175,55,0.18); }
+    .hero-primary .label { color: var(--gold-2); }
+    .hero-primary .value { font-size:16px; font-weight:700; }
     .kv .cell { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:10px; }
     .cell .label { font-size:12px; color:var(--muted); margin-bottom:6px; }
     .cell .value { font-size:14px; }
@@ -138,18 +142,16 @@
           <h2 style="margin:6px 0 6px;">陛下可一眼查看项目做到哪一步</h2>
           <div id="heroStageBanner" class="warn-tag" style="margin-bottom:8px;">当前项目做到哪一步：--</div>
           <div id="heroSummaryPanel" class="panel" style="margin-top:10px; padding:12px;">
-            <div class="kv" style="margin-top:0;">
+            <div class="kv hero-kv" style="margin-top:0;">
+              <div class="cell hero-primary"><div class="label">当前状态</div><div id="heroStatusSummaryValue" class="value">--</div></div>
+              <div class="cell hero-primary"><div class="label">当前卡点</div><div id="heroBottleneckValue" class="value">--</div></div>
+              <div class="cell hero-primary"><div class="label">下一步动作</div><div id="heroNextSummaryValue" class="value">--</div></div>
               <div class="cell"><div class="label">当前阶段</div><div id="heroStageValue" class="value">--</div></div>
-              <div class="cell"><div class="label">当前状态</div><div id="heroStatusValue" class="value">--</div></div>
               <div class="cell"><div class="label">是否阻塞</div><div id="heroBlockedValue" class="value">--</div></div>
               <div class="cell"><div class="label">最近更新</div><div id="heroUpdatedValue" class="value">--</div></div>
-              <div class="cell"><div class="label">下一步动作</div><div id="heroNextValue" class="value">--</div></div>
-              <div class="cell"><div class="label">当前卡点摘要</div><div id="heroBottleneckValue" class="value">--</div></div>
-              <div class="cell"><div class="label">下一步动作摘要</div><div id="heroNextSummaryValue" class="value">--</div></div>
-              <div class="cell"><div class="label">负责人摘要</div><div id="heroOwnerSummaryValue" class="value">--</div></div>
-              <div class="cell"><div class="label">下一里程碑时间摘要</div><div id="heroMilestoneTimeSummaryValue" class="value">--</div></div>
-              <div class="cell"><div class="label">风险/延期摘要</div><div id="heroRiskSummaryValue" class="value">--</div></div>
-              <div class="cell"><div class="label">当前状态摘要</div><div id="heroStatusSummaryValue" class="value">--</div></div>
+              <div class="cell"><div class="label">负责人</div><div id="heroOwnerSummaryValue" class="value">--</div></div>
+              <div class="cell"><div class="label">下一里程碑时间</div><div id="heroMilestoneTimeSummaryValue" class="value">--</div></div>
+              <div class="cell"><div class="label">风险/延期</div><div id="heroRiskSummaryValue" class="value">--</div></div>
             </div>
           </div>
           <div class="progress-wrap" style="margin-top:12px;">
@@ -408,10 +410,8 @@
       document.getElementById('dataSourceTag').textContent = `数据来源：${data.source}`;
       document.getElementById('heroStageBanner').textContent = `当前项目做到哪一步：${data.featuredProject.stage}｜${data.featuredProject.status === 'done' ? '已完成' : data.featuredProject.status === 'alert' ? '待推进' : '进行中'}｜下一步：${data.featuredProject.nextAction}`;
       document.getElementById('heroStageValue').textContent = data.featuredProject.stage;
-      document.getElementById('heroStatusValue').textContent = data.featuredProject.status === 'done' ? '已完成' : data.featuredProject.status === 'alert' ? '待推进' : '进行中';
       document.getElementById('heroBlockedValue').textContent = data.featuredProject.blocked ? '是' : '否';
       document.getElementById('heroUpdatedValue').textContent = data.lastUpdated;
-      document.getElementById('heroNextValue').textContent = data.featuredProject.nextAction;
       document.getElementById('heroBottleneckValue').textContent = data.featuredProject.stage;
       document.getElementById('heroNextSummaryValue').textContent = data.featuredProject.nextAction;
       document.getElementById('heroOwnerSummaryValue').textContent = data.featuredProject.owner;
