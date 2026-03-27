@@ -150,6 +150,9 @@
           <div class="eyebrow">朝堂总览</div>
           <h2 style="margin:6px 0 6px;">陛下可一眼查看项目做到哪一步</h2>
           <div id="heroStageBanner" class="warn-tag" style="margin-bottom:8px;">当前项目做到哪一步：--</div>
+          <div style="margin-top:10px; display:flex; justify-content:flex-end;">
+            <button id="toggleHeroSummaryBtn" type="button">收起项目总览区域</button>
+          </div>
           <div id="heroSummaryPanel" class="panel" style="margin-top:10px; padding:12px;">
             <div class="kv hero-kv" style="margin-top:0;">
               <div class="cell hero-primary"><div class="label">当前状态</div><div id="heroStatusSummaryValue" class="value">--</div></div>
@@ -366,6 +369,8 @@
     const navLinks = document.querySelectorAll('.nav a');
     const pages = document.querySelectorAll('.page');
     const refreshError = document.getElementById('refreshError');
+    const heroSummaryPanel = document.getElementById('heroSummaryPanel');
+    const toggleHeroSummaryBtn = document.getElementById('toggleHeroSummaryBtn');
     const goProjectsBtn = document.getElementById('goProjectsBtn');
     const goLastViewedBtn = document.getElementById('goLastViewedBtn');
     const goHighRiskBtn = document.getElementById('goHighRiskBtn');
@@ -393,6 +398,11 @@
     let currentProjectIndex = 0;
 
     function showApp() { loginView.classList.add('hidden'); appView.classList.remove('hidden'); }
+    function setHeroSummaryCollapsed(collapsed) {
+      heroSummaryPanel.style.display = collapsed ? 'none' : 'block';
+      toggleHeroSummaryBtn.textContent = collapsed ? '展开项目总览区域' : '收起项目总览区域';
+      localStorage.setItem('court-demo-hero-collapsed', collapsed ? '1' : '0');
+    }
     function showLogin() { appView.classList.add('hidden'); loginView.classList.remove('hidden'); }
     function formatStatusPill(label, className) { return `<span class="status ${className}">${label}</span>`; }
     function blockedPill(blocked, label) { return `<span class="status ${blocked ? 'alert' : 'done'}">${label}</span>`; }
@@ -659,6 +669,10 @@
       });
     });
 
+    toggleHeroSummaryBtn.addEventListener('click', () => {
+      setHeroSummaryCollapsed(heroSummaryPanel.style.display !== 'none');
+    });
+
     goProjectsBtn.addEventListener('click', () => {
       switchPage('projects');
     });
@@ -800,7 +814,10 @@
 
     if (localStorage.getItem('court-demo-auth') === 'ok') {
       showApp();
+      setHeroSummaryCollapsed(localStorage.getItem('court-demo-hero-collapsed') === '1');
       loadData();
+    } else {
+      setHeroSummaryCollapsed(false);
     }
   </script>
 </body>
