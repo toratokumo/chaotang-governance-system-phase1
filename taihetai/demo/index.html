@@ -231,7 +231,10 @@
             <h3 style="margin:0 0 6px;">项目进度页</h3>
             <div class="muted">聚焦“当前做到哪了”，优先展示阶段、进度、阻塞、下一步。</div>
           </div>
-          <span class="source-tag">本地真实数据文件</span>
+          <div>
+            <span class="source-tag">本地真实数据文件</span>
+            <button id="backOverviewBtn" type="button" style="margin-left:8px;">返回首页总览</button>
+          </div>
         </div>
         <div id="projectHeroPanel" class="panel" style="margin-bottom:16px;">
           <div class="section-title">
@@ -302,6 +305,7 @@
     const pages = document.querySelectorAll('.page');
     const refreshError = document.getElementById('refreshError');
     const goProjectsBtn = document.getElementById('goProjectsBtn');
+    const backOverviewBtn = document.getElementById('backOverviewBtn');
     let refreshTimer = null;
 
     function showApp() { loginView.classList.add('hidden'); appView.classList.remove('hidden'); }
@@ -505,6 +509,10 @@
 
     goProjectsBtn.addEventListener('click', () => {
       switchPage('projects');
+    });
+
+    backOverviewBtn.addEventListener('click', () => {
+      switchPage('overview');
     });
 
     if (localStorage.getItem('court-demo-auth') === 'ok') {
