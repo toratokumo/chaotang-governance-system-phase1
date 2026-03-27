@@ -285,6 +285,7 @@
             <button id="backHomeFromProjectBtn" type="button">返回首页总览</button>
             <button id="prevProjectBtn" type="button">上一项目</button>
             <button id="nextProjectBtn" type="button">下一项目</button>
+            <button id="copyProjectLinkBtn" type="button">复制项目链接</button>
           </div>
           <div id="projectHeroPhaseBanner" class="hero-phase-strip">
             <div style="margin-bottom:8px; font-weight:700; color: var(--gold-2);">当前阶段条</div>
@@ -372,6 +373,7 @@
     const backHomeFromProjectBtn = document.getElementById('backHomeFromProjectBtn');
     const prevProjectBtn = document.getElementById('prevProjectBtn');
     const nextProjectBtn = document.getElementById('nextProjectBtn');
+    const copyProjectLinkBtn = document.getElementById('copyProjectLinkBtn');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const ownerFilterSelect = document.getElementById('ownerFilterSelect');
     const keywordSearchInput = document.getElementById('keywordSearchInput');
@@ -463,6 +465,7 @@
       const currentList = getFilteredProjects(latestProjects);
       currentProjectIndex = Math.max(0, currentList.findIndex(item => item.name === project.name));
       localStorage.setItem('court-demo-last-project', project.name);
+      window.location.hash = `project=${encodeURIComponent(project.name)}`;
       document.getElementById('projectHeroName').textContent = project.name;
       document.getElementById('projectHeroMeta').textContent = `当前阶段：${project.stage} · 当前状态：${project.statusLabel} · 负责人：${project.owner}`;
       document.getElementById('projectHeroBottleneckBanner').textContent = `当前卡点：${project.stage}`;
@@ -743,6 +746,19 @@
       if (!list.length) return;
       currentProjectIndex = (currentProjectIndex + 1) % list.length;
       renderProjectHero(list[currentProjectIndex]);
+    });
+
+    copyProjectLinkBtn.addEventListener('click', async () => {
+      const name = localStorage.getItem('court-demo-last-project') || '';
+      const link = `${window.location.origin}${window.location.pathname}#project=${encodeURIComponent(name)}`;
+      try {
+        await navigator.clipboard.writeText(link);
+        copyProjectLinkBtn.textContent = '已复制项目链接';
+        setTimeout(() => { copyProjectLinkBtn.textContent = '复制项目链接'; }, 1500);
+      } catch (error) {
+        copyProjectLinkBtn.textContent = '复制失败';
+        setTimeout(() => { copyProjectLinkBtn.textContent = '复制项目链接'; }, 1500);
+      }
     });
 
     filterButtons.forEach(button => {
