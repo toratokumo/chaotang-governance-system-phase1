@@ -90,6 +90,7 @@
     .cell .value { font-size:14px; }
     .error-box { margin-top:12px; padding:10px 12px; border-radius:12px; background:rgba(255,107,107,0.12); color:var(--danger); border:1px solid rgba(255,107,107,0.24); font-weight:700; }
     .phase-strip { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 4px; }
+    .hero-phase-strip { margin: 0 0 12px; padding: 10px; border-radius: 14px; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.18); }
     .phase-node { padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.03); color:var(--muted); font-size:12px; }
     .phase-node.done { background:rgba(110,231,168,0.12); color:var(--ok); }
     .phase-node.current { background:rgba(212,175,55,0.16); color:var(--gold-2); border-color:rgba(212,175,55,0.35); }
@@ -276,7 +277,10 @@
             <button id="backToProjectListBtn" type="button">返回项目列表</button>
             <button id="backHomeFromProjectBtn" type="button" style="margin-left:8px;">返回首页总览</button>
           </div>
-          <div id="projectHeroPhases" class="phase-strip"></div>
+          <div id="projectHeroPhaseBanner" class="hero-phase-strip">
+            <div style="margin-bottom:8px; font-weight:700; color: var(--gold-2);">当前阶段条</div>
+            <div id="projectHeroPhases" class="phase-strip"></div>
+          </div>
           <div class="kv">
             <div class="cell"><div class="label">当前节点</div><div id="projectHeroCurrentNode" class="value">--</div></div>
             <div class="cell"><div class="label">下一里程碑</div><div id="projectHeroNextMilestone" class="value">--</div></div>
