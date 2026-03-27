@@ -167,8 +167,9 @@
             <div class="progress-bar"><div id="heroTopProgressBar" class="progress-fill" style="width:0%"></div></div>
             <div class="progress-meta"><span id="heroTopProgressText">当前进度：--</span><span id="heroTopStageText">当前卡点：--</span></div>
           </div>
-          <div style="margin-top:12px;">
+          <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
             <button id="goProjectsBtn" type="button" class="hero-entry-btn">查看全部项目与详细进度</button>
+            <button id="goLastViewedBtn" type="button" class="hero-entry-btn">返回上次查看的项目详情</button>
           </div>
           <div class="source-tag" style="margin-top:10px; font-weight:700; font-size:13px;">
             <span>数据来源</span>：<span id="dataSourceTag">本地真实数据文件</span>
@@ -351,6 +352,7 @@
     const pages = document.querySelectorAll('.page');
     const refreshError = document.getElementById('refreshError');
     const goProjectsBtn = document.getElementById('goProjectsBtn');
+    const goLastViewedBtn = document.getElementById('goLastViewedBtn');
     const backOverviewBtn = document.getElementById('backOverviewBtn');
     const backToProjectListBtn = document.getElementById('backToProjectListBtn');
     const backHomeFromProjectBtn = document.getElementById('backHomeFromProjectBtn');
@@ -416,6 +418,7 @@
         return;
       }
       document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '当前阶段条';
+      localStorage.setItem('court-demo-last-project', project.name);
       document.getElementById('projectHeroName').textContent = project.name;
       document.getElementById('projectHeroMeta').textContent = `当前阶段：${project.stage} · 当前状态：${project.statusLabel} · 负责人：${project.owner}`;
       document.getElementById('projectHeroBottleneckBanner').textContent = `当前卡点：${project.stage}`;
@@ -624,6 +627,19 @@
     });
 
     goProjectsBtn.addEventListener('click', () => {
+      switchPage('projects');
+    });
+
+    goLastViewedBtn.addEventListener('click', () => {
+      const lastViewed = localStorage.getItem('court-demo-last-project');
+      if (lastViewed && latestProjects.length) {
+        const matched = latestProjects.find(project => project.name === lastViewed);
+        if (matched) {
+          switchPage('projects');
+          renderProjectHero(matched);
+          return;
+        }
+      }
       switchPage('projects');
     });
 
