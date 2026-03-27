@@ -158,12 +158,6 @@
               <div class="cell hero-primary"><div class="label">当前状态</div><div id="heroStatusSummaryValue" class="value">--</div></div>
               <div class="cell hero-primary"><div class="label">当前卡点</div><div id="heroBottleneckValue" class="value">--</div></div>
               <div class="cell hero-primary"><div class="label">下一步动作</div><div id="heroNextSummaryValue" class="value">--</div></div>
-              <div class="cell"><div class="label">当前阶段</div><div id="heroStageValue" class="value">--</div></div>
-              <div class="cell"><div class="label">是否阻塞</div><div id="heroBlockedValue" class="value">--</div></div>
-              <div class="cell"><div class="label">最近更新</div><div id="heroUpdatedValue" class="value">--</div></div>
-              <div class="cell"><div class="label">负责人</div><div id="heroOwnerSummaryValue" class="value">--</div></div>
-              <div class="cell"><div class="label">下一里程碑时间</div><div id="heroMilestoneTimeSummaryValue" class="value">--</div></div>
-              <div class="cell"><div class="label">风险/延期</div><div id="heroRiskSummaryValue" class="value">--</div></div>
             </div>
           </div>
           <div class="progress-wrap" style="margin-top:12px;">
@@ -260,7 +254,7 @@
         <div class="section-title">
           <div>
             <h3 style="margin:0 0 6px;">项目进度页</h3>
-            <div class="muted">聚焦“当前做到哪了”，优先展示阶段、进度、阻塞、下一步。</div>
+            <div class="muted">先筛选，再看当前节点、风险与下一步。</div>
           </div>
           <div>
             <span class="source-tag">本地真实数据文件</span>
@@ -571,14 +565,8 @@
     function renderData(data) {
       document.getElementById('dataSourceTag').textContent = `${data.source}`;
       document.getElementById('heroStageBanner').textContent = `当前项目做到哪一步：${data.featuredProject.stage}｜${data.featuredProject.status === 'done' ? '已完成' : data.featuredProject.status === 'alert' ? '待推进' : '进行中'}｜下一步：${data.featuredProject.nextAction}`;
-      document.getElementById('heroStageValue').textContent = data.featuredProject.stage;
-      document.getElementById('heroBlockedValue').textContent = data.featuredProject.blocked ? '是' : '否';
-      document.getElementById('heroUpdatedValue').textContent = data.lastUpdated;
       document.getElementById('heroBottleneckValue').textContent = data.featuredProject.stage;
       document.getElementById('heroNextSummaryValue').textContent = data.featuredProject.nextAction;
-      document.getElementById('heroOwnerSummaryValue').textContent = data.featuredProject.owner;
-      document.getElementById('heroMilestoneTimeSummaryValue').textContent = data.projects?.[0]?.nextMilestoneTime || '待定';
-      document.getElementById('heroRiskSummaryValue').textContent = data.projects?.[0]?.delayed ? '有延期风险' : (data.featuredProject.blocked ? '有阻塞风险' : '当前无明显风险');
       document.getElementById('heroStatusSummaryValue').textContent = data.featuredProject.status === 'done' ? '已完成' : data.featuredProject.status === 'alert' ? (data.featuredProject.blocked ? '阻塞中' : '待处理') : '进行中';
       document.getElementById('heroProjectTotalValue').textContent = `${data.summary.total} 个项目`;
       document.getElementById('heroInProgressCountValue').textContent = `${data.summary.inProgress} 个进行中`;
@@ -598,7 +586,7 @@
 
       const featured = data.featuredProject;
       document.getElementById('featuredName').textContent = `当前最紧急项目：${featured.name}`;
-      document.getElementById('featuredGoal').textContent = `目标：${featured.goal}`;
+      document.getElementById('featuredGoal').textContent = `负责人：${featured.owner} ｜ 最近更新：${data.lastUpdated} ｜ 下一里程碑：${featured.milestone} ｜ 风险：${featured.blocked ? '有阻塞风险' : '当前无明显风险'}`;
       const featuredStatus = document.getElementById('featuredStatus');
       featuredStatus.textContent = featured.status === 'done' ? '已完成' : featured.status === 'alert' ? '待推进' : '执行中';
       featuredStatus.className = `pill ${featured.status}`;
