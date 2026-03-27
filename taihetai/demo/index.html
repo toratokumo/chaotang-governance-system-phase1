@@ -146,6 +146,7 @@
               <div class="cell"><div class="label">下一步动作</div><div id="heroNextValue" class="value">--</div></div>
               <div class="cell"><div class="label">当前卡点摘要</div><div id="heroBottleneckValue" class="value">--</div></div>
               <div class="cell"><div class="label">下一步动作摘要</div><div id="heroNextSummaryValue" class="value">--</div></div>
+              <div class="cell"><div class="label">负责人摘要</div><div id="heroOwnerSummaryValue" class="value">--</div></div>
             </div>
           </div>
           <div class="progress-wrap" style="margin-top:12px;">
@@ -410,6 +411,7 @@
       document.getElementById('heroNextValue').textContent = data.featuredProject.nextAction;
       document.getElementById('heroBottleneckValue').textContent = data.featuredProject.stage;
       document.getElementById('heroNextSummaryValue').textContent = data.featuredProject.nextAction;
+      document.getElementById('heroOwnerSummaryValue').textContent = data.featuredProject.owner;
       document.getElementById('heroTopProgressBar').style.width = `${data.featuredProject.progress}%`;
       document.getElementById('heroTopProgressText').textContent = `当前进度：${data.featuredProject.progress}%`;
       document.getElementById('heroTopStageText').textContent = `当前卡点：${data.featuredProject.stage}`;
