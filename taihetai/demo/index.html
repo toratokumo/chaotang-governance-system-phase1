@@ -93,6 +93,7 @@
     .phase-node { padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.03); color:var(--muted); font-size:12px; }
     .phase-node.done { background:rgba(110,231,168,0.12); color:var(--ok); }
     .phase-node.current { background:rgba(212,175,55,0.16); color:var(--gold-2); border-color:rgba(212,175,55,0.35); }
+    .bottleneck-banner { margin: 10px 0 12px; padding: 12px 14px; border-radius: 14px; background: rgba(255,184,107,0.12); border: 1px solid rgba(255,184,107,0.28); color: var(--warn); font-weight: 700; }
     @media (max-width:1100px) { .cards, .grid-3, .kv { grid-template-columns:repeat(2,1fr); } }
     @media (max-width:900px) { .login-card, .app-shell, .grid-2, .cards, .grid-3, .kv { grid-template-columns:1fr; } .sidebar { display:none; } .project-item-top, .topbar { flex-direction:column; align-items:flex-start; } }
   </style>
@@ -262,6 +263,7 @@
           </div>
           <div id="projectHeroName" style="font-size:20px; font-weight:700; margin-bottom:6px;">--</div>
           <div id="projectHeroMeta" class="muted">--</div>
+          <div id="projectHeroBottleneckBanner" class="bottleneck-banner">当前卡点：--</div>
           <div style="margin:10px 0;">
             <button id="backToProjectListBtn" type="button">返回项目列表</button>
             <button id="backHomeFromProjectBtn" type="button" style="margin-left:8px;">返回首页总览</button>
@@ -376,6 +378,7 @@
       if (!project) {
         document.getElementById('projectHeroName').textContent = '暂无项目数据';
         document.getElementById('projectHeroMeta').textContent = '当前暂无可展示的项目进度数据。';
+        document.getElementById('projectHeroBottleneckBanner').textContent = '当前卡点：暂无数据';
         document.getElementById('projectHeroCurrentNode').textContent = '--';
         document.getElementById('projectHeroNextMilestone').textContent = '--';
         document.getElementById('projectHeroRiskFlag').textContent = '暂无数据';
@@ -392,6 +395,7 @@
       }
       document.getElementById('projectHeroName').textContent = project.name;
       document.getElementById('projectHeroMeta').textContent = `当前阶段：${project.stage} · 当前状态：${project.statusLabel} · 负责人：${project.owner}`;
+      document.getElementById('projectHeroBottleneckBanner').textContent = `当前卡点：${project.stage}`;
       document.getElementById('projectHeroCurrentNode').textContent = project.phaseFlow?.[project.currentPhaseIndex] || project.stage;
       document.getElementById('projectHeroNextMilestone').textContent = project.nextMilestone || project.milestone || '--';
       document.getElementById('projectHeroRiskFlag').textContent = project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险');
