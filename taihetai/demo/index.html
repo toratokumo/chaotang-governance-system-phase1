@@ -272,6 +272,7 @@
           <button type="button" class="filter-btn" data-filter="doing">进行中</button>
           <button type="button" class="filter-btn" data-filter="alert">阻塞中 / 待处理</button>
           <button type="button" class="filter-btn" data-filter="done">已完成</button>
+          <button type="button" class="filter-btn" data-filter="blocked">仅看阻塞</button>
         </div>
         <div id="projectList" class="project-list"></div>
       </section>
@@ -384,7 +385,7 @@
 
     function renderProjects(projects) {
       latestProjects = projects || [];
-      const filteredProjects = currentFilter === 'all' ? latestProjects : latestProjects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : project.status === currentFilter);
+      const filteredProjects = currentFilter === 'all' ? latestProjects : latestProjects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : currentFilter === 'blocked' ? project.blocked : project.status === currentFilter);
       if (!filteredProjects || filteredProjects.length === 0) {
         renderProjectHero(latestProjects[0] || null);
         document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">当前筛选下暂无项目，请切换筛选条件。</div></div>';
