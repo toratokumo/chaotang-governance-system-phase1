@@ -162,7 +162,9 @@
           <div style="margin-top:12px;">
             <button id="goProjectsBtn" type="button" class="hero-entry-btn">立即查看项目页详细进度</button>
           </div>
-          <span id="dataSourceTag" class="source-tag">数据来源：本地真实数据文件</span>
+          <div class="source-tag" style="margin-top:10px; font-weight:700; font-size:13px;">
+            <span>数据来源</span>：<span id="dataSourceTag">本地真实数据文件</span>
+          </div>
         </div>
         <div style="text-align:right;">
           <div class="muted">当前身份：陛下（演示）</div>
@@ -412,7 +414,7 @@
     }
 
     function renderData(data) {
-      document.getElementById('dataSourceTag').textContent = `数据来源：${data.source}`;
+      document.getElementById('dataSourceTag').textContent = `${data.source}`;
       document.getElementById('heroStageBanner').textContent = `当前项目做到哪一步：${data.featuredProject.stage}｜${data.featuredProject.status === 'done' ? '已完成' : data.featuredProject.status === 'alert' ? '待推进' : '进行中'}｜下一步：${data.featuredProject.nextAction}`;
       document.getElementById('heroStageValue').textContent = data.featuredProject.stage;
       document.getElementById('heroBlockedValue').textContent = data.featuredProject.blocked ? '是' : '否';
