@@ -280,9 +280,11 @@
           <div id="projectHeroProgressBanner" class="bottleneck-banner">当前进度：--</div>
           <div id="projectHeroMetaBanner" class="bottleneck-banner">最近更新时间：-- ｜ 数据来源：--</div>
           <div id="projectHeroRefreshAlertBanner" class="bottleneck-banner">刷新状态：正常</div>
-          <div style="margin:10px 0;">
+          <div style="margin:10px 0; display:flex; gap:8px; flex-wrap:wrap;">
             <button id="backToProjectListBtn" type="button">返回项目列表</button>
-            <button id="backHomeFromProjectBtn" type="button" style="margin-left:8px;">返回首页总览</button>
+            <button id="backHomeFromProjectBtn" type="button">返回首页总览</button>
+            <button id="prevProjectBtn" type="button">上一项目</button>
+            <button id="nextProjectBtn" type="button">下一项目</button>
           </div>
           <div id="projectHeroPhaseBanner" class="hero-phase-strip">
             <div style="margin-bottom:8px; font-weight:700; color: var(--gold-2);">当前阶段条</div>
@@ -368,6 +370,8 @@
     const backOverviewBtn = document.getElementById('backOverviewBtn');
     const backToProjectListBtn = document.getElementById('backToProjectListBtn');
     const backHomeFromProjectBtn = document.getElementById('backHomeFromProjectBtn');
+    const prevProjectBtn = document.getElementById('prevProjectBtn');
+    const nextProjectBtn = document.getElementById('nextProjectBtn');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const ownerFilterSelect = document.getElementById('ownerFilterSelect');
     const keywordSearchInput = document.getElementById('keywordSearchInput');
@@ -378,6 +382,7 @@
     let currentKeyword = '';
     let currentSort = 'default';
     let latestProjects = [];
+    let currentProjectIndex = 0;
 
     function showApp() { loginView.classList.add('hidden'); appView.classList.remove('hidden'); }
     function showLogin() { appView.classList.add('hidden'); loginView.classList.remove('hidden'); }
@@ -398,6 +403,31 @@
 
     function renderTimeline(items) {
       document.getElementById('timelineList').innerHTML = items.map(item => `<li>${item}</li>`).join('');
+    }
+
+    function getFilteredProjects(projects) {
+      let filteredProjects = currentFilter === 'all' ? projects : projects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : currentFilter === 'blocked' ? project.blocked : currentFilter === 'delayed' ? project.delayed : currentFilter === 'high-risk' ? project.riskLevel === 'high' : project.status === currentFilter);
+      if (currentOwnerFilter !== 'all-owners') {
+        filteredProjects = filteredProjects.filter(project => project.owner === currentOwnerFilter);
+      }
+      if (currentKeyword) {
+        const keyword = currentKeyword.toLowerCase();
+        filteredProjects = filteredProjects.filter(project => [project.name, project.stage, project.latestUpdate, project.nextAction, project.risk].filter(Boolean).some(value => value.toLowerCase().includes(keyword)));
+      }
+      if (currentSort === 'milestone-asc') {
+        filteredProjects = [...filteredProjects].sort((a, b) => {
+          const av = a.nextMilestoneTime || '9999-99-99 99:99';
+          const bv = b.nextMilestoneTime || '9999-99-99 99:99';
+          return av.localeCompare(bv);
+        });
+      } else if (currentSort === 'updated-desc') {
+        filteredProjects = [...filteredProjects].sort((a, b) => (b.updatedAt || '').localeCompare(a.updatedAt || ''));
+      } else if (currentSort === 'owner-asc') {
+        filteredProjects = [...filteredProjects].sort((a, b) => (a.owner || '').localeCompare(b.owner || ''));
+      } else if (currentSort === 'name-asc') {
+        filteredProjects = [...filteredProjects].sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+      }
+      return filteredProjects;
     }
 
     function renderProjectHero(project) {
@@ -430,6 +460,8 @@
         return;
       }
       document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '当前阶段条';
+      const currentList = getFilteredProjects(latestProjects);
+      currentProjectIndex = Math.max(0, currentList.findIndex(item => item.name === project.name));
       localStorage.setItem('court-demo-last-project', project.name);
       document.getElementById('projectHeroName').textContent = project.name;
       document.getElementById('projectHeroMeta').textContent = `当前阶段：${project.stage} · 当前状态：${project.statusLabel} · 负责人：${project.owner}`;
@@ -462,27 +494,7 @@
 
     function renderProjects(projects) {
       latestProjects = projects || [];
-      let filteredProjects = currentFilter === 'all' ? latestProjects : latestProjects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : currentFilter === 'blocked' ? project.blocked : currentFilter === 'delayed' ? project.delayed : currentFilter === 'high-risk' ? project.riskLevel === 'high' : project.status === currentFilter);
-      if (currentOwnerFilter !== 'all-owners') {
-        filteredProjects = filteredProjects.filter(project => project.owner === currentOwnerFilter);
-      }
-      if (currentKeyword) {
-        const keyword = currentKeyword.toLowerCase();
-        filteredProjects = filteredProjects.filter(project => [project.name, project.stage, project.latestUpdate, project.nextAction, project.risk].filter(Boolean).some(value => value.toLowerCase().includes(keyword)));
-      }
-      if (currentSort === 'milestone-asc') {
-        filteredProjects = [...filteredProjects].sort((a, b) => {
-          const av = a.nextMilestoneTime || '9999-99-99 99:99';
-          const bv = b.nextMilestoneTime || '9999-99-99 99:99';
-          return av.localeCompare(bv);
-        });
-      } else if (currentSort === 'updated-desc') {
-        filteredProjects = [...filteredProjects].sort((a, b) => (b.updatedAt || '').localeCompare(a.updatedAt || ''));
-      } else if (currentSort === 'owner-asc') {
-        filteredProjects = [...filteredProjects].sort((a, b) => (a.owner || '').localeCompare(b.owner || ''));
-      } else if (currentSort === 'name-asc') {
-        filteredProjects = [...filteredProjects].sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-      }
+      let filteredProjects = getFilteredProjects(latestProjects);
       if (!filteredProjects || filteredProjects.length === 0) {
         renderProjectHero(latestProjects[0] || null);
         document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">当前筛选下暂无项目，请切换筛选条件。</div></div>';
@@ -717,6 +729,20 @@
 
     backHomeFromProjectBtn.addEventListener('click', () => {
       switchPage('overview');
+    });
+
+    prevProjectBtn.addEventListener('click', () => {
+      const list = getFilteredProjects(latestProjects);
+      if (!list.length) return;
+      currentProjectIndex = (currentProjectIndex - 1 + list.length) % list.length;
+      renderProjectHero(list[currentProjectIndex]);
+    });
+
+    nextProjectBtn.addEventListener('click', () => {
+      const list = getFilteredProjects(latestProjects);
+      if (!list.length) return;
+      currentProjectIndex = (currentProjectIndex + 1) % list.length;
+      renderProjectHero(list[currentProjectIndex]);
     });
 
     filterButtons.forEach(button => {
