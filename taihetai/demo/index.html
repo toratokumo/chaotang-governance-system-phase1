@@ -78,6 +78,10 @@
     .cell .label { font-size:12px; color:var(--muted); margin-bottom:6px; }
     .cell .value { font-size:14px; }
     .error-box { margin-top:12px; padding:10px 12px; border-radius:12px; background:rgba(255,107,107,0.12); color:var(--danger); border:1px solid rgba(255,107,107,0.24); }
+    .phase-strip { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 4px; }
+    .phase-node { padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.03); color:var(--muted); font-size:12px; }
+    .phase-node.done { background:rgba(110,231,168,0.12); color:var(--ok); }
+    .phase-node.current { background:rgba(212,175,55,0.16); color:var(--gold-2); border-color:rgba(212,175,55,0.35); }
     @media (max-width:1100px) { .cards, .grid-3, .kv { grid-template-columns:repeat(2,1fr); } }
     @media (max-width:900px) { .login-card, .app-shell, .grid-2, .cards, .grid-3, .kv { grid-template-columns:1fr; } .sidebar { display:none; } .project-item-top, .topbar { flex-direction:column; align-items:flex-start; } }
   </style>
@@ -217,6 +221,21 @@
           </div>
           <span class="source-tag">本地真实数据文件</span>
         </div>
+        <div id="projectHeroPanel" class="panel" style="margin-bottom:16px;">
+          <div class="section-title">
+            <h3 style="margin:0;">项目页首屏焦点</h3>
+            <span class="source-tag">首屏阶段条</span>
+          </div>
+          <div id="projectHeroName" style="font-size:20px; font-weight:700; margin-bottom:6px;">--</div>
+          <div id="projectHeroMeta" class="muted">--</div>
+          <div id="projectHeroPhases" class="phase-strip"></div>
+          <div class="kv">
+            <div class="cell"><div class="label">当前节点</div><div id="projectHeroCurrentNode" class="value">--</div></div>
+            <div class="cell"><div class="label">下一里程碑</div><div id="projectHeroNextMilestone" class="value">--</div></div>
+            <div class="cell"><div class="label">风险 / 延期标记</div><div id="projectHeroRiskFlag" class="value">--</div></div>
+            <div class="cell"><div class="label">更新时间</div><div id="projectHeroUpdatedAt" class="value">--</div></div>
+          </div>
+        </div>
         <div id="projectList" class="project-list"></div>
       </section>
 
@@ -282,7 +301,21 @@
       document.getElementById('timelineList').innerHTML = items.map(item => `<li>${item}</li>`).join('');
     }
 
+    function renderProjectHero(project) {
+      document.getElementById('projectHeroName').textContent = project.name;
+      document.getElementById('projectHeroMeta').textContent = `当前阶段：${project.stage} · 当前状态：${project.statusLabel} · 负责人：${project.owner}`;
+      document.getElementById('projectHeroCurrentNode').textContent = project.phaseFlow?.[project.currentPhaseIndex] || project.stage;
+      document.getElementById('projectHeroNextMilestone').textContent = project.nextMilestone || project.milestone || '--';
+      document.getElementById('projectHeroRiskFlag').textContent = project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险');
+      document.getElementById('projectHeroUpdatedAt').textContent = project.updatedAt;
+      document.getElementById('projectHeroPhases').innerHTML = (project.phaseFlow || []).map((phase, index) => {
+        const cls = index < project.currentPhaseIndex ? 'phase-node done' : index === project.currentPhaseIndex ? 'phase-node current' : 'phase-node';
+        return `<span class="${cls}">${phase}</span>`;
+      }).join('');
+    }
+
     function renderProjects(projects) {
+      renderProjectHero(projects[0]);
       document.getElementById('projectList').innerHTML = projects.map(project => `
         <div class="project-item">
           <div class="project-item-top">
@@ -300,8 +333,9 @@
           <div class="kv">
             <div class="cell"><div class="label">下一步动作</div><div class="value">${project.nextAction}</div></div>
             <div class="cell"><div class="label">最近更新</div><div class="value">${project.latestUpdate}</div></div>
-            <div class="cell"><div class="label">里程碑</div><div class="value">${project.milestone}</div></div>
-            <div class="cell"><div class="label">风险提示</div><div class="value">${project.risk}</div></div>
+            <div class="cell"><div class="label">下一里程碑</div><div class="value">${project.nextMilestone || project.milestone}</div></div>
+            <div class="cell"><div class="label">风险提示</div><div class="value">${project.delayed ? '有延期风险；' : ''}${project.risk}</div></div>
+            <div style="grid-column: 1 / -1;"><div class="phase-strip">${(project.phaseFlow || []).map((phase, index) => `<span class="${index < project.currentPhaseIndex ? 'phase-node done' : index === project.currentPhaseIndex ? 'phase-node current' : 'phase-node'}">${phase}</span>`).join('')}</div></div>
           </div>
         </div>
       `).join('');
