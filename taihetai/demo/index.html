@@ -170,6 +170,7 @@
           <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
             <button id="goProjectsBtn" type="button" class="hero-entry-btn">查看全部项目与详细进度</button>
             <button id="goLastViewedBtn" type="button" class="hero-entry-btn">最近查看项目</button>
+            <div id="lastViewedStatusSummary" class="source-tag" style="align-self:center;">最近查看项目状态：--</div>
             <button id="goHighRiskBtn" type="button" class="hero-entry-btn">查看高风险项目</button>
             <button id="goBlockedBtn" type="button" class="hero-entry-btn">查看阻塞项目</button>
             <button id="goDelayedBtn" type="button" class="hero-entry-btn">查看延期项目</button>
@@ -659,6 +660,8 @@
 
     goLastViewedBtn.addEventListener('click', () => {
       const lastViewed = localStorage.getItem('court-demo-last-project');
+      const lastViewedProject = latestProjects.find(project => project.name === lastViewed);
+      document.getElementById('lastViewedStatusSummary').textContent = lastViewedProject ? `最近查看项目状态：${lastViewedProject.name}｜${lastViewedProject.statusLabel}` : '最近查看项目状态：暂无';
       if (lastViewed && latestProjects.length) {
         const matched = latestProjects.find(project => project.name === lastViewed);
         if (matched) {
