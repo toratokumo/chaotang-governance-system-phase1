@@ -212,6 +212,11 @@
           <div class="section-title">
             <div>
               <div class="warn-tag" style="margin-bottom:8px;">当前最紧急项目</div><h3 id="featuredName" style="margin-bottom:6px;">--</h3><button id="goFeaturedProjectBtn" type="button" class="hero-entry-btn" style="margin-bottom:10px;">立即进入最紧急项目详情</button>
+          <div class="kv hero-kv" style="margin-top:0; margin-bottom:10px;">
+            <div class="cell hero-primary"><div class="label">最紧急项目当前状态</div><div id="featuredTopStatus" class="value">--</div></div>
+            <div class="cell hero-primary"><div class="label">最紧急项目当前卡点</div><div id="featuredTopBottleneck" class="value">--</div></div>
+            <div class="cell hero-primary"><div class="label">最紧急项目下一步动作</div><div id="featuredTopNextAction" class="value">--</div></div>
+          </div>
               <div id="featuredGoal" class="muted">--</div>
             </div>
             <span id="featuredStatus" class="pill doing">--</span>
@@ -598,6 +603,9 @@
       featuredStatus.textContent = featured.status === 'done' ? '已完成' : featured.status === 'alert' ? '待推进' : '执行中';
       featuredStatus.className = `pill ${featured.status}`;
       document.getElementById('featuredStage').textContent = featured.stage;
+      document.getElementById('featuredTopStatus').textContent = featured.status === 'done' ? '已完成' : featured.status === 'alert' ? '待推进' : '进行中';
+      document.getElementById('featuredTopBottleneck').textContent = featured.stage;
+      document.getElementById('featuredTopNextAction').textContent = featured.nextAction;
       document.getElementById('featuredOwner').textContent = featured.owner;
       document.getElementById('featuredNext').textContent = featured.nextAction;
       document.getElementById('featuredBlocked').innerHTML = blockedPill(featured.blocked, featured.blocked ? '是' : '否');
