@@ -150,6 +150,9 @@
             <div class="progress-bar"><div id="heroTopProgressBar" class="progress-fill" style="width:0%"></div></div>
             <div class="progress-meta"><span id="heroTopProgressText">当前进度：--</span><span id="heroTopStageText">当前卡点：--</span></div>
           </div>
+          <div style="margin-top:12px;">
+            <button id="goProjectsBtn" type="button">查看项目页详细进度</button>
+          </div>
           <span id="dataSourceTag" class="source-tag">数据来源：本地真实数据文件</span>
         </div>
         <div style="text-align:right;">
@@ -289,6 +292,7 @@
     const navLinks = document.querySelectorAll('.nav a');
     const pages = document.querySelectorAll('.page');
     const refreshError = document.getElementById('refreshError');
+    const goProjectsBtn = document.getElementById('goProjectsBtn');
     let refreshTimer = null;
 
     function showApp() { loginView.classList.add('hidden'); appView.classList.remove('hidden'); }
@@ -471,15 +475,23 @@
       showLogin();
     });
 
+    function switchPage(page) {
+      navLinks.forEach(n => n.classList.remove('active'));
+      const activeLink = document.querySelector(`.nav a[data-page="${page}"]`);
+      if (activeLink) activeLink.classList.add('active');
+      pages.forEach(p => p.classList.remove('active'));
+      document.getElementById(`page-${page}`).classList.add('active');
+    }
+
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const page = link.dataset.page;
-        navLinks.forEach(n => n.classList.remove('active'));
-        link.classList.add('active');
-        pages.forEach(p => p.classList.remove('active'));
-        document.getElementById(`page-${page}`).classList.add('active');
+        switchPage(link.dataset.page);
       });
+    });
+
+    goProjectsBtn.addEventListener('click', () => {
+      switchPage('projects');
     });
 
     if (localStorage.getItem('court-demo-auth') === 'ok') {
