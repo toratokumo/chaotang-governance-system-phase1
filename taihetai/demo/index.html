@@ -75,6 +75,7 @@
     .filter-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
     .filter-btn { background:rgba(255,255,255,0.06); color:var(--text); border:1px solid var(--border); }
     .filter-btn.active { background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#201700; }
+    .filter-select { background:rgba(255,255,255,0.06); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
     .project-item { padding:16px; border:1px solid var(--border); border-radius:16px; background:rgba(255,255,255,0.02); }
     .project-item-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:10px; }
     .kv { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:10px; }
@@ -274,6 +275,9 @@
           <button type="button" class="filter-btn" data-filter="done">已完成</button>
           <button type="button" class="filter-btn" data-filter="blocked">仅看阻塞</button>
           <button type="button" class="filter-btn" data-filter="delayed">仅看延期</button>
+          <select id="ownerFilterSelect" class="filter-select">
+            <option value="all-owners">按负责人筛选</option>
+          </select>
         </div>
         <div id="projectList" class="project-list"></div>
       </section>
@@ -320,8 +324,10 @@
     const goProjectsBtn = document.getElementById('goProjectsBtn');
     const backOverviewBtn = document.getElementById('backOverviewBtn');
     const filterButtons = document.querySelectorAll('.filter-btn');
+    const ownerFilterSelect = document.getElementById('ownerFilterSelect');
     let refreshTimer = null;
     let currentFilter = 'all';
+    let currentOwnerFilter = 'all-owners';
     let latestProjects = [];
 
     function showApp() { loginView.classList.add('hidden'); appView.classList.remove('hidden'); }
@@ -386,7 +392,10 @@
 
     function renderProjects(projects) {
       latestProjects = projects || [];
-      const filteredProjects = currentFilter === 'all' ? latestProjects : latestProjects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : currentFilter === 'blocked' ? project.blocked : currentFilter === 'delayed' ? project.delayed : project.status === currentFilter);
+      let filteredProjects = currentFilter === 'all' ? latestProjects : latestProjects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : currentFilter === 'blocked' ? project.blocked : currentFilter === 'delayed' ? project.delayed : project.status === currentFilter);
+      if (currentOwnerFilter !== 'all-owners') {
+        filteredProjects = filteredProjects.filter(project => project.owner === currentOwnerFilter);
+      }
       if (!filteredProjects || filteredProjects.length === 0) {
         renderProjectHero(latestProjects[0] || null);
         document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">当前筛选下暂无项目，请切换筛选条件。</div></div>';
@@ -476,6 +485,9 @@
       document.getElementById('featuredProgressText').textContent = `整体进度：${featured.progress}%`;
       document.getElementById('featuredMilestone').textContent = `预计下一里程碑：${featured.milestone}`;
 
+      const owners = Array.from(new Set(data.projects.map(project => project.owner)));
+      ownerFilterSelect.innerHTML = '<option value="all-owners">按负责人筛选</option>' + owners.map(owner => `<option value="${owner}">${owner}</option>`).join('');
+      ownerFilterSelect.value = owners.includes(currentOwnerFilter) ? currentOwnerFilter : 'all-owners';
       renderOverviewTable(data.projects);
       renderTimeline(data.timeline);
       renderProjects(data.projects);
@@ -551,6 +563,11 @@
         button.classList.add('active');
         renderProjects(latestProjects);
       });
+    });
+
+    ownerFilterSelect.addEventListener('change', () => {
+      currentOwnerFilter = ownerFilterSelect.value;
+      renderProjects(latestProjects);
     });
 
     if (localStorage.getItem('court-demo-auth') === 'ok') {
