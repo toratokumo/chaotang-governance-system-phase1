@@ -33,7 +33,17 @@
       "nextAction": "补定时轮询刷新并重新部署",
       "latestUpdate": "已接入本地真实数据文件，正在补自动轮询。",
       "milestone": "准实时版本上线",
-      "risk": "当前无硬阻塞，重点在刷新链路稳定。"
+      "risk": "当前无硬阻塞，重点在刷新链路稳定。",
+      "phaseFlow": [
+        "立项",
+        "方案",
+        "审议",
+        "执行",
+        "验收"
+      ],
+      "currentPhaseIndex": 3,
+      "nextMilestone": "进入验收展示准备",
+      "delayed": false
     },
     {
       "name": "项目进度可视化急件",
@@ -48,7 +58,17 @@
       "nextAction": "完成轮询与刷新时间展示",
       "latestUpdate": "已从静态 mock 页面转向数据文件驱动。",
       "milestone": "可自动刷新显示最新进度",
-      "risk": "需防止拉取失败时静默失真。"
+      "risk": "需防止拉取失败时静默失真。",
+      "phaseFlow": [
+        "立项",
+        "方案",
+        "审议",
+        "执行",
+        "验收"
+      ],
+      "currentPhaseIndex": 3,
+      "nextMilestone": "首屏进度展示进一步细化",
+      "delayed": false
     },
     {
       "name": "权限边界初审",
@@ -63,7 +83,17 @@
       "nextAction": "留档备查",
       "latestUpdate": "准实时方案边界已审定。",
       "milestone": "审议通过",
-      "risk": "无"
+      "risk": "无",
+      "phaseFlow": [
+        "立项",
+        "方案",
+        "审议",
+        "执行",
+        "验收"
+      ],
+      "currentPhaseIndex": 4,
+      "nextMilestone": "归档备查",
+      "delayed": false
     },
     {
       "name": "国库统计模型预留",
@@ -78,7 +108,17 @@
       "nextAction": "待当前急件完成后再展开",
       "latestUpdate": "当前优先级让位于准实时进度展示。",
       "milestone": "一期主功能稳定后再推进",
-      "risk": "若长期延后，会影响资源统计真实性。"
+      "risk": "若长期延后，会影响资源统计真实性。",
+      "phaseFlow": [
+        "立项",
+        "方案",
+        "审议",
+        "执行",
+        "验收"
+      ],
+      "currentPhaseIndex": 0,
+      "nextMilestone": "等待重新排期",
+      "delayed": true
     }
   ],
   "timeline": [
