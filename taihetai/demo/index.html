@@ -174,6 +174,7 @@
             <button id="goBlockedBtn" type="button" class="hero-entry-btn">查看阻塞项目</button>
             <button id="goDelayedBtn" type="button" class="hero-entry-btn">查看延期项目</button>
             <button id="goRecentBtn" type="button" class="hero-entry-btn">查看最近更新项目</button>
+            <button id="goPendingBtn" type="button" class="hero-entry-btn">查看待处理项目</button>
           </div>
           <div class="source-tag" style="margin-top:10px; font-weight:700; font-size:13px;">
             <span>数据来源</span>：<span id="dataSourceTag">本地真实数据文件</span>
@@ -361,6 +362,7 @@
     const goBlockedBtn = document.getElementById('goBlockedBtn');
     const goDelayedBtn = document.getElementById('goDelayedBtn');
     const goRecentBtn = document.getElementById('goRecentBtn');
+    const goPendingBtn = document.getElementById('goPendingBtn');
     const backOverviewBtn = document.getElementById('backOverviewBtn');
     const backToProjectListBtn = document.getElementById('backToProjectListBtn');
     const backHomeFromProjectBtn = document.getElementById('backHomeFromProjectBtn');
@@ -681,6 +683,15 @@
     goRecentBtn.addEventListener('click', () => {
       currentSort = 'updated-desc';
       sortSelect.value = 'updated-desc';
+      switchPage('projects');
+      renderProjects(latestProjects);
+    });
+
+    goPendingBtn.addEventListener('click', () => {
+      currentFilter = 'alert';
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      const pendingBtn = document.querySelector('.filter-btn[data-filter="alert"]');
+      if (pendingBtn) pendingBtn.classList.add('active');
       switchPage('projects');
       renderProjects(latestProjects);
     });
