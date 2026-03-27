@@ -234,6 +234,7 @@
               <span id="projectHeroMilestoneTimeTag" class="source-tag" style="margin-left:8px;">下一里程碑时间：--</span>
               <span id="projectHeroOwnerTag" class="source-tag" style="margin-left:8px;">负责人：--</span>
               <span id="projectHeroLatestUpdateTag" class="source-tag" style="margin-left:8px;">最近更新内容：--</span>
+              <span id="projectHeroNextActionTag" class="source-tag" style="margin-left:8px;">下一步动作：--</span>
             </div>
           </div>
           <div id="projectHeroName" style="font-size:20px; font-weight:700; margin-bottom:6px;">--</div>
@@ -326,6 +327,7 @@
       document.getElementById('projectHeroMilestoneTimeTag').textContent = `下一里程碑时间：${project.nextMilestoneTime || '待定'}`;
       document.getElementById('projectHeroOwnerTag').textContent = `负责人：${project.owner}`;
       document.getElementById('projectHeroLatestUpdateTag').textContent = `最近更新内容：${project.latestUpdate}`;
+      document.getElementById('projectHeroNextActionTag').textContent = `下一步动作：${project.nextAction}`;
       document.getElementById('projectHeroPhases').innerHTML = (project.phaseFlow || []).map((phase, index) => {
         const cls = index < project.currentPhaseIndex ? 'phase-node done' : index === project.currentPhaseIndex ? 'phase-node current' : 'phase-node';
         return `<span class="${cls}">${phase}</span>`;
