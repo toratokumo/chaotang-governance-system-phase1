@@ -46,7 +46,9 @@
       "currentPhaseIndex": 3,
       "nextMilestone": "进入验收展示准备",
       "delayed": false,
-      "nextMilestoneTime": "2026-03-27 19:30"
+      "nextMilestoneTime": "2026-03-27 19:30",
+      "riskLevel": "low",
+      "riskLevelLabel": "低风险"
     },
     {
       "name": "项目进度可视化急件",
@@ -72,7 +74,9 @@
       "currentPhaseIndex": 3,
       "nextMilestone": "首屏进度展示进一步细化",
       "delayed": false,
-      "nextMilestoneTime": "2026-03-27 19:00"
+      "nextMilestoneTime": "2026-03-27 19:00",
+      "riskLevel": "low",
+      "riskLevelLabel": "低风险"
     },
     {
       "name": "权限边界初审",
@@ -98,7 +102,9 @@
       "currentPhaseIndex": 4,
       "nextMilestone": "归档备查",
       "delayed": false,
-      "nextMilestoneTime": "2026-03-28 10:00"
+      "nextMilestoneTime": "2026-03-28 10:00",
+      "riskLevel": "low",
+      "riskLevelLabel": "低风险"
     },
     {
       "name": "国库统计模型预留",
@@ -124,7 +130,9 @@
       "currentPhaseIndex": 0,
       "nextMilestone": "等待重新排期",
       "delayed": true,
-      "nextMilestoneTime": "待定"
+      "nextMilestoneTime": "待定",
+      "riskLevel": "high",
+      "riskLevelLabel": "高风险"
     }
   ],
   "timeline": [

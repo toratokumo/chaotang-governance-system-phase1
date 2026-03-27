@@ -276,6 +276,7 @@
           <button type="button" class="filter-btn" data-filter="done">已完成</button>
           <button type="button" class="filter-btn" data-filter="blocked">仅看阻塞</button>
           <button type="button" class="filter-btn" data-filter="delayed">仅看延期</button>
+          <button type="button" class="filter-btn" data-filter="high-risk">仅看高风险</button>
           <select id="ownerFilterSelect" class="filter-select">
             <option value="all-owners">按负责人筛选</option>
           </select>
@@ -403,7 +404,7 @@
 
     function renderProjects(projects) {
       latestProjects = projects || [];
-      let filteredProjects = currentFilter === 'all' ? latestProjects : latestProjects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : currentFilter === 'blocked' ? project.blocked : currentFilter === 'delayed' ? project.delayed : project.status === currentFilter);
+      let filteredProjects = currentFilter === 'all' ? latestProjects : latestProjects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : currentFilter === 'blocked' ? project.blocked : currentFilter === 'delayed' ? project.delayed : currentFilter === 'high-risk' ? project.riskLevel === 'high' : project.status === currentFilter);
       if (currentOwnerFilter !== 'all-owners') {
         filteredProjects = filteredProjects.filter(project => project.owner === currentOwnerFilter);
       }
@@ -449,6 +450,7 @@
             <div class="cell"><div class="label">下一步动作</div><div class="value">${project.nextAction}</div></div>
             <div class="cell"><div class="label">最近更新</div><div class="value">${project.latestUpdate}</div></div>
             <div class="cell"><div class="label">下一里程碑</div><div class="value">${project.nextMilestone || project.milestone}</div></div>
+            <div class="cell"><div class="label">风险等级</div><div class="value">${project.riskLevelLabel || "未标记"}</div></div>
             <div class="cell"><div class="label">风险提示</div><div class="value">${project.delayed ? '有延期风险；' : ''}${project.risk}</div></div>
             <div style="grid-column: 1 / -1;"><div class="phase-strip">${(project.phaseFlow || []).map((phase, index) => `<span class="${index < project.currentPhaseIndex ? 'phase-node done' : index === project.currentPhaseIndex ? 'phase-node current' : 'phase-node'}">${phase}</span>`).join('')}</div></div>
           </div>
