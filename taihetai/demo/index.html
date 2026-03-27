@@ -280,6 +280,10 @@
             <option value="all-owners">按负责人筛选</option>
           </select>
           <input id="keywordSearchInput" class="filter-input" type="text" placeholder="搜索项目名称或摘要" />
+          <select id="sortSelect" class="filter-select">
+            <option value="default">默认排序</option>
+            <option value="milestone-asc">按下一里程碑时间排序</option>
+          </select>
         </div>
         <div id="projectList" class="project-list"></div>
       </section>
@@ -328,10 +332,12 @@
     const filterButtons = document.querySelectorAll('.filter-btn');
     const ownerFilterSelect = document.getElementById('ownerFilterSelect');
     const keywordSearchInput = document.getElementById('keywordSearchInput');
+    const sortSelect = document.getElementById('sortSelect');
     let refreshTimer = null;
     let currentFilter = 'all';
     let currentOwnerFilter = 'all-owners';
     let currentKeyword = '';
+    let currentSort = 'default';
     let latestProjects = [];
 
     function showApp() { loginView.classList.add('hidden'); appView.classList.remove('hidden'); }
@@ -403,6 +409,13 @@
       if (currentKeyword) {
         const keyword = currentKeyword.toLowerCase();
         filteredProjects = filteredProjects.filter(project => [project.name, project.stage, project.latestUpdate, project.nextAction, project.risk].filter(Boolean).some(value => value.toLowerCase().includes(keyword)));
+      }
+      if (currentSort === 'milestone-asc') {
+        filteredProjects = [...filteredProjects].sort((a, b) => {
+          const av = a.nextMilestoneTime || '9999-99-99 99:99';
+          const bv = b.nextMilestoneTime || '9999-99-99 99:99';
+          return av.localeCompare(bv);
+        });
       }
       if (!filteredProjects || filteredProjects.length === 0) {
         renderProjectHero(latestProjects[0] || null);
@@ -580,6 +593,11 @@
 
     keywordSearchInput.addEventListener('input', () => {
       currentKeyword = keywordSearchInput.value.trim();
+      renderProjects(latestProjects);
+    });
+
+    sortSelect.addEventListener('change', () => {
+      currentSort = sortSelect.value;
       renderProjects(latestProjects);
     });
 
