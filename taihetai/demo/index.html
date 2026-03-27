@@ -427,6 +427,7 @@
       document.getElementById('heroStatusSummaryValue').textContent = data.featuredProject.status === 'done' ? '已完成' : data.featuredProject.status === 'alert' ? (data.featuredProject.blocked ? '阻塞中' : '待处理') : '进行中';
       document.getElementById('heroProjectTotalValue').textContent = `${data.summary.total} 个项目`;
       document.getElementById('heroInProgressCountValue').textContent = `${data.summary.inProgress} 个进行中`;
+      document.getElementById('heroBlockedCountValue').textContent = `${data.summary.blocked} 个阻塞`;
       document.getElementById('heroTopProgressBar').style.width = `${data.featuredProject.progress}%`;
       document.getElementById('heroTopProgressText').textContent = `当前进度：${data.featuredProject.progress}%`;
       document.getElementById('heroTopStageText').textContent = `当前卡点：${data.featuredProject.stage}`;
