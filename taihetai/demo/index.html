@@ -230,6 +230,7 @@
               <span id="projectHeroRefreshTag" class="source-tag" style="margin-left:8px;">最近刷新：--</span>
               <span id="projectHeroAlertTag" class="warn-tag" style="margin-left:8px;">拉取状态：正常</span>
               <span id="projectHeroBlockedTag" class="source-tag" style="margin-left:8px;">是否阻塞：--</span>
+              <span id="projectHeroDelayedTag" class="source-tag" style="margin-left:8px;">延期标记：--</span>
             </div>
           </div>
           <div id="projectHeroName" style="font-size:20px; font-weight:700; margin-bottom:6px;">--</div>
@@ -317,6 +318,8 @@
       document.getElementById('projectHeroRefreshTag').textContent = `最近刷新：${project.updatedAt}`;
       document.getElementById('projectHeroBlockedTag').textContent = `是否阻塞：${project.blocked ? '是' : '否'}`;
       document.getElementById('projectHeroBlockedTag').className = project.blocked ? 'warn-tag alert' : 'source-tag';
+      document.getElementById('projectHeroDelayedTag').textContent = `延期标记：${project.delayed ? '有延期风险' : '无'}`;
+      document.getElementById('projectHeroDelayedTag').className = project.delayed ? 'warn-tag alert' : 'source-tag';
       document.getElementById('projectHeroPhases').innerHTML = (project.phaseFlow || []).map((phase, index) => {
         const cls = index < project.currentPhaseIndex ? 'phase-node done' : index === project.currentPhaseIndex ? 'phase-node current' : 'phase-node';
         return `<span class="${cls}">${phase}</span>`;
