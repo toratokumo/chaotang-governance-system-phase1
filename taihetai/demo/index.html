@@ -148,6 +148,7 @@
               <div class="cell"><div class="label">下一步动作摘要</div><div id="heroNextSummaryValue" class="value">--</div></div>
               <div class="cell"><div class="label">负责人摘要</div><div id="heroOwnerSummaryValue" class="value">--</div></div>
               <div class="cell"><div class="label">下一里程碑时间摘要</div><div id="heroMilestoneTimeSummaryValue" class="value">--</div></div>
+              <div class="cell"><div class="label">风险/延期摘要</div><div id="heroRiskSummaryValue" class="value">--</div></div>
             </div>
           </div>
           <div class="progress-wrap" style="margin-top:12px;">
@@ -414,6 +415,7 @@
       document.getElementById('heroNextSummaryValue').textContent = data.featuredProject.nextAction;
       document.getElementById('heroOwnerSummaryValue').textContent = data.featuredProject.owner;
       document.getElementById('heroMilestoneTimeSummaryValue').textContent = data.projects?.[0]?.nextMilestoneTime || '待定';
+      document.getElementById('heroRiskSummaryValue').textContent = data.projects?.[0]?.delayed ? '有延期风险' : (data.featuredProject.blocked ? '有阻塞风险' : '当前无明显风险');
       document.getElementById('heroTopProgressBar').style.width = `${data.featuredProject.progress}%`;
       document.getElementById('heroTopProgressText').textContent = `当前进度：${data.featuredProject.progress}%`;
       document.getElementById('heroTopStageText').textContent = `当前卡点：${data.featuredProject.stage}`;
