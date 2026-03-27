@@ -1,0 +1,108 @@
+{
+  "source": "本地真实数据文件",
+  "lastUpdated": "2026-03-27 17:58",
+  "refreshIntervalMs": 15000,
+  "summary": {
+    "total": 4,
+    "inProgress": 2,
+    "done": 1,
+    "blocked": 1
+  },
+  "featuredProject": {
+    "name": "朝堂治理系统一期 Demo",
+    "goal": "让陛下登录后即可看到项目当前进度与关键状态",
+    "stage": "真实数据接入",
+    "owner": "尚书省",
+    "nextAction": "补定时轮询刷新并重新部署",
+    "blocked": false,
+    "progress": 78,
+    "status": "doing",
+    "milestone": "准实时版本上线"
+  },
+  "projects": [
+    {
+      "name": "朝堂治理系统一期 Demo",
+      "stage": "真实数据接入",
+      "status": "doing",
+      "statusLabel": "进行中",
+      "owner": "尚书省",
+      "blocked": false,
+      "blockedLabel": "无",
+      "updatedAt": "2026-03-27 17:58",
+      "progress": 78,
+      "nextAction": "补定时轮询刷新并重新部署",
+      "latestUpdate": "已接入本地真实数据文件，正在补自动轮询。",
+      "milestone": "准实时版本上线",
+      "risk": "当前无硬阻塞，重点在刷新链路稳定。"
+    },
+    {
+      "name": "项目进度可视化急件",
+      "stage": "自动轮询刷新",
+      "status": "doing",
+      "statusLabel": "进行中",
+      "owner": "尚书省",
+      "blocked": false,
+      "blockedLabel": "无",
+      "updatedAt": "2026-03-27 17:58",
+      "progress": 82,
+      "nextAction": "完成轮询与刷新时间展示",
+      "latestUpdate": "已从静态 mock 页面转向数据文件驱动。",
+      "milestone": "可自动刷新显示最新进度",
+      "risk": "需防止拉取失败时静默失真。"
+    },
+    {
+      "name": "权限边界初审",
+      "stage": "审议完成",
+      "status": "done",
+      "statusLabel": "已完成",
+      "owner": "门下省",
+      "blocked": false,
+      "blockedLabel": "无",
+      "updatedAt": "2026-03-27 12:00",
+      "progress": 100,
+      "nextAction": "留档备查",
+      "latestUpdate": "准实时方案边界已审定。",
+      "milestone": "审议通过",
+      "risk": "无"
+    },
+    {
+      "name": "国库统计模型预留",
+      "stage": "待展开",
+      "status": "alert",
+      "statusLabel": "待推进",
+      "owner": "户部 / 尚书省",
+      "blocked": true,
+      "blockedLabel": "有",
+      "updatedAt": "2026-03-27 11:30",
+      "progress": 25,
+      "nextAction": "待当前急件完成后再展开",
+      "latestUpdate": "当前优先级让位于准实时进度展示。",
+      "milestone": "一期主功能稳定后再推进",
+      "risk": "若长期延后，会影响资源统计真实性。"
+    }
+  ],
+  "timeline": [
+    "中书省准实时方案已出，门下省原则通过。",
+    "尚书省已将页面改造为由本地真实数据文件驱动。",
+    "当前正在补定时轮询刷新与刷新时间展示。",
+    "下一里程碑：推送 GitHub 并更新 Vercel。"
+  ],
+  "alerts": [
+    {
+      "item": "国库统计模型预留",
+      "level": "中",
+      "levelClass": "warn",
+      "status": "待推进",
+      "statusClass": "alert",
+      "description": "当前让位于“项目进度可视化”急件。"
+    },
+    {
+      "item": "数据轮询刷新",
+      "level": "低",
+      "levelClass": "doing",
+      "status": "处理中",
+      "statusClass": "doing",
+      "description": "若拉取失败，将给出轻量告警而不静默失真。"
+    }
+  ]
+}

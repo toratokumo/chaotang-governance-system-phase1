@@ -22,131 +22,64 @@
       --shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
-      color: var(--text);
-    }
-    .hidden { display: none !important; }
-    .login-shell {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-    .login-card, .app-shell { width: 100%; }
-    .login-card {
-      max-width: 1100px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      background: rgba(18,26,43,0.92);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    .login-hero, .login-form { padding: 36px; }
-    .login-hero {
-      background: radial-gradient(circle at top left, rgba(212,175,55,0.18), transparent 35%), linear-gradient(135deg, #121a2b, #0b1220);
-      border-right: 1px solid var(--border);
-    }
-    .eyebrow { color: var(--gold); letter-spacing: 0.12em; font-size: 12px; text-transform: uppercase; }
-    h1,h2,h3,h4,p { margin-top: 0; }
-    .muted { color: var(--muted); }
-    .demo-tag, .mock-tag {
-      display:inline-block; padding:6px 10px; border-radius:999px;
-      font-size:12px; border:1px solid transparent;
-    }
-    .demo-tag { background: rgba(81,196,211,0.12); color: var(--cyan); border-color: rgba(81,196,211,0.24); }
-    .mock-tag { background: rgba(255,184,107,0.12); color: var(--warn); border-color: rgba(255,184,107,0.24); }
-    form { display: grid; gap: 14px; }
-    label { font-size: 14px; color: var(--muted); }
-    input {
-      width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border);
-      background: var(--panel-2); color: var(--text); outline: none;
-    }
-    button {
-      padding: 12px 16px; border: none; border-radius: 12px; cursor: pointer;
-      background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #201700; font-weight: 700;
-    }
-    .hint { font-size: 13px; color: var(--muted); }
-    .app-shell {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      min-height: 100vh;
-    }
-    .sidebar {
-      background: rgba(10,16,28,0.95);
-      border-right: 1px solid var(--border);
-      padding: 24px 18px;
-    }
-    .brand { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
-    .nav a {
-      display: block; padding: 12px 14px; margin: 8px 0; color: var(--text); text-decoration: none;
-      border-radius: 12px; background: transparent; border: 1px solid transparent;
-    }
-    .nav a.active, .nav a:hover { background: var(--panel); border-color: var(--border); }
-    .main { padding: 24px; }
-    .topbar {
-      display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px;
-      background: rgba(18,26,43,0.9); border:1px solid var(--border); border-radius: 18px; padding: 18px 20px;
-    }
-    .cards { display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-bottom: 20px; }
-    .card, .panel {
-      background: rgba(18,26,43,0.92); border:1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: var(--shadow);
-    }
-    .metric { font-size: 30px; font-weight: 800; margin: 8px 0 0; }
-    .grid-2 { display:grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
-    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { text-align:left; padding: 12px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-    .status, .pill {
-      display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600;
-    }
-    .status.doing, .pill.doing { background: rgba(81,196,211,0.12); color: var(--cyan); }
-    .status.done, .pill.done { background: rgba(110,231,168,0.12); color: var(--ok); }
-    .status.alert, .pill.alert { background: rgba(255,107,107,0.12); color: var(--danger); }
-    .status.warn, .pill.warn { background: rgba(255,184,107,0.12); color: var(--warn); }
-    .progress-wrap { margin-top: 8px; }
-    .progress-bar {
-      height: 10px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-2)); border-radius: 999px;
-    }
-    .progress-meta {
-      display:flex; justify-content:space-between; margin-top:6px; font-size:12px; color: var(--muted);
-    }
-    .project-focus {
-      border: 1px solid rgba(212,175,55,0.22);
-      background: linear-gradient(180deg, rgba(212,175,55,0.05), rgba(18,26,43,0.95));
-    }
+    body { margin: 0; font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif; background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); color: var(--text); }
+    .hidden { display:none !important; }
+    .login-shell { min-height: 100vh; display:grid; place-items:center; padding:24px; }
+    .login-card, .app-shell { width:100%; }
+    .login-card { max-width:1100px; display:grid; grid-template-columns:1.2fr 1fr; background:rgba(18,26,43,0.92); border:1px solid var(--border); border-radius:20px; overflow:hidden; box-shadow:var(--shadow); }
+    .login-hero, .login-form { padding:36px; }
+    .login-hero { background: radial-gradient(circle at top left, rgba(212,175,55,0.18), transparent 35%), linear-gradient(135deg, #121a2b, #0b1220); border-right:1px solid var(--border); }
+    .eyebrow { color:var(--gold); letter-spacing:0.12em; font-size:12px; text-transform:uppercase; }
+    h1,h2,h3,h4,p { margin-top:0; }
+    .muted { color:var(--muted); }
+    .demo-tag, .source-tag, .warn-tag { display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid transparent; }
+    .demo-tag { background:rgba(81,196,211,0.12); color:var(--cyan); border-color:rgba(81,196,211,0.24); }
+    .source-tag { background:rgba(110,231,168,0.12); color:var(--ok); border-color:rgba(110,231,168,0.24); }
+    .warn-tag { background:rgba(255,184,107,0.12); color:var(--warn); border-color:rgba(255,184,107,0.24); }
+    form { display:grid; gap:14px; }
+    label { font-size:14px; color:var(--muted); }
+    input { width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:var(--panel-2); color:var(--text); outline:none; }
+    button { padding:12px 16px; border:none; border-radius:12px; cursor:pointer; background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#201700; font-weight:700; }
+    .hint { font-size:13px; color:var(--muted); }
+    .app-shell { display:grid; grid-template-columns:240px 1fr; min-height:100vh; }
+    .sidebar { background:rgba(10,16,28,0.95); border-right:1px solid var(--border); padding:24px 18px; }
+    .brand { font-size:20px; font-weight:800; margin-bottom:6px; }
+    .nav a { display:block; padding:12px 14px; margin:8px 0; color:var(--text); text-decoration:none; border-radius:12px; background:transparent; border:1px solid transparent; }
+    .nav a.active, .nav a:hover { background:var(--panel); border-color:var(--border); }
+    .main { padding:24px; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:20px; background:rgba(18,26,43,0.9); border:1px solid var(--border); border-radius:18px; padding:18px 20px; }
+    .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px; }
+    .card, .panel { background:rgba(18,26,43,0.92); border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow:var(--shadow); }
+    .metric { font-size:30px; font-weight:800; margin:8px 0 0; }
+    .grid-2 { display:grid; grid-template-columns:1.3fr 1fr; gap:16px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { text-align:left; padding:12px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+    .status, .pill { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+    .doing { background:rgba(81,196,211,0.12); color:var(--cyan); }
+    .done { background:rgba(110,231,168,0.12); color:var(--ok); }
+    .alert { background:rgba(255,107,107,0.12); color:var(--danger); }
+    .warn { background:rgba(255,184,107,0.12); color:var(--warn); }
+    .progress-wrap { margin-top:8px; }
+    .progress-bar { height:10px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden; }
+    .progress-fill { height:100%; background:linear-gradient(90deg, var(--gold), var(--gold-2)); border-radius:999px; }
+    .progress-meta { display:flex; justify-content:space-between; margin-top:6px; font-size:12px; color:var(--muted); }
+    .project-focus { border:1px solid rgba(212,175,55,0.22); background:linear-gradient(180deg, rgba(212,175,55,0.05), rgba(18,26,43,0.95)); }
     ul.timeline { list-style:none; padding:0; margin:0; }
-    ul.timeline li { padding: 12px 0; border-bottom:1px solid var(--border); }
+    ul.timeline li { padding:12px 0; border-bottom:1px solid var(--border); }
     .page { display:none; }
     .page.active { display:block; }
     .section-title { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
     .project-list { display:grid; gap:14px; }
-    .project-item {
-      padding: 16px; border:1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,0.02);
-    }
-    .project-item-top {
-      display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:10px;
-    }
-    .kv { display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-top:10px; }
-    .kv .cell { background: rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:10px; }
-    .cell .label { font-size:12px; color: var(--muted); margin-bottom:6px; }
+    .project-item { padding:16px; border:1px solid var(--border); border-radius:16px; background:rgba(255,255,255,0.02); }
+    .project-item-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:10px; }
+    .kv { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:10px; }
+    .kv .cell { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:10px; }
+    .cell .label { font-size:12px; color:var(--muted); margin-bottom:6px; }
     .cell .value { font-size:14px; }
-    .empty-note { color: var(--muted); font-size: 14px; }
-    @media (max-width: 1100px) {
-      .cards, .grid-3, .kv { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 900px) {
-      .login-card, .app-shell, .grid-2, .cards, .grid-3, .kv { grid-template-columns: 1fr; }
-      .sidebar { display:none; }
-      .project-item-top, .topbar { flex-direction: column; align-items: flex-start; }
-    }
+    .error-box { margin-top:12px; padding:10px 12px; border-radius:12px; background:rgba(255,107,107,0.12); color:var(--danger); border:1px solid rgba(255,107,107,0.24); }
+    @media (max-width:1100px) { .cards, .grid-3, .kv { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:900px) { .login-card, .app-shell, .grid-2, .cards, .grid-3, .kv { grid-template-columns:1fr; } .sidebar { display:none; } .project-item-top, .topbar { flex-direction:column; align-items:flex-start; } }
   </style>
 </head>
 <body>
@@ -157,10 +90,10 @@
         <h1>太和台</h1>
         <p class="muted" style="margin-top:-10px;">朝堂治理系统</p>
         <p class="demo-tag">一期 Demo</p>
-        <p class="muted">登录后查看朝堂总览、项目进度与阶段态势。当前版本以“让陛下 10 秒内看出做到哪了”为先。</p>
+        <p class="muted">登录后查看朝堂总览、项目进度与阶段态势。当前版本已改为本地真实数据文件驱动，并按周期自动刷新。</p>
         <div class="panel" style="margin-top:24px;">
           <h3>当前重点</h3>
-          <p class="muted">已优先补强项目进度可视化：当前阶段、负责人、阻塞状态、下一步动作、更新时间与进度条。</p>
+          <p class="muted">先以本地真实数据文件作为权威来源，再由前端定时轮询刷新，后续再升级为更强的数据通道。</p>
         </div>
       </div>
       <div class="login-form">
@@ -185,7 +118,7 @@
   <section id="appView" class="app-shell hidden">
     <aside class="sidebar">
       <div class="brand">太和台</div>
-      <div class="muted" style="margin-bottom: 18px;">一期 Demo · 只读展示</div>
+      <div class="muted" style="margin-bottom:18px;">一期 Demo · 准实时展示</div>
       <nav class="nav">
         <a href="#overview" class="active" data-page="overview">总览</a>
         <a href="#projects" data-page="projects">项目进度</a>
@@ -198,41 +131,44 @@
       <div class="topbar">
         <div>
           <div class="eyebrow">朝堂总览</div>
-          <h2 style="margin: 6px 0 6px;">陛下可一眼查看项目做到哪一步</h2>
-          <span class="mock-tag">以下均为 Mock / 演示数据</span>
+          <h2 style="margin:6px 0 6px;">陛下可一眼查看项目做到哪一步</h2>
+          <span id="dataSourceTag" class="source-tag">数据来源：本地真实数据文件</span>
         </div>
         <div style="text-align:right;">
           <div class="muted">当前身份：陛下（演示）</div>
-          <div class="muted">最近更新时间：2026-03-21 20:20</div>
+          <div class="muted">最近刷新时间：<span id="lastUpdatedText">--</span></div>
+          <div class="muted">轮询间隔：<span id="refreshIntervalText">--</span></div>
           <button id="logoutBtn" style="margin-top:8px;">退出</button>
         </div>
       </div>
 
+      <div id="refreshError" class="error-box hidden">数据拉取失败，当前展示可能不是最新状态。</div>
+
       <section id="page-overview" class="page active">
         <div class="cards">
-          <div class="card"><div class="muted">项目总数</div><div class="metric">4</div></div>
-          <div class="card"><div class="muted">进行中</div><div class="metric">2</div></div>
-          <div class="card"><div class="muted">已完成</div><div class="metric">1</div></div>
-          <div class="card"><div class="muted">阻塞 / 告警</div><div class="metric">1</div></div>
+          <div class="card"><div class="muted">项目总数</div><div id="metricTotal" class="metric">--</div></div>
+          <div class="card"><div class="muted">进行中</div><div id="metricProgress" class="metric">--</div></div>
+          <div class="card"><div class="muted">已完成</div><div id="metricDone" class="metric">--</div></div>
+          <div class="card"><div class="muted">阻塞 / 告警</div><div id="metricBlocked" class="metric">--</div></div>
         </div>
 
         <div class="panel project-focus" style="margin-bottom:20px;">
           <div class="section-title">
             <div>
-              <h3 style="margin-bottom:6px;">当前重点项目：朝堂治理系统一期 Demo</h3>
-              <div class="muted">目标：让陛下登录后即可看到项目当前进度与关键状态</div>
+              <h3 id="featuredName" style="margin-bottom:6px;">--</h3>
+              <div id="featuredGoal" class="muted">--</div>
             </div>
-            <span class="pill doing">执行中</span>
+            <span id="featuredStatus" class="pill doing">--</span>
           </div>
           <div class="kv">
-            <div class="cell"><div class="label">当前阶段</div><div class="value">前端演示强化</div></div>
-            <div class="cell"><div class="label">负责人</div><div class="value">尚书省</div></div>
-            <div class="cell"><div class="label">下一步动作</div><div class="value">补项目页与状态展示后再推 GitHub / Vercel</div></div>
-            <div class="cell"><div class="label">是否阻塞</div><div class="value"><span class="pill done">否</span></div></div>
+            <div class="cell"><div class="label">当前阶段</div><div id="featuredStage" class="value">--</div></div>
+            <div class="cell"><div class="label">负责人</div><div id="featuredOwner" class="value">--</div></div>
+            <div class="cell"><div class="label">下一步动作</div><div id="featuredNext" class="value">--</div></div>
+            <div class="cell"><div class="label">是否阻塞</div><div id="featuredBlocked" class="value">--</div></div>
           </div>
           <div class="progress-wrap">
-            <div class="progress-bar"><div class="progress-fill" style="width: 68%;"></div></div>
-            <div class="progress-meta"><span>整体进度：68%</span><span>预计下一里程碑：可视化强化版上线</span></div>
+            <div class="progress-bar"><div id="featuredProgressBar" class="progress-fill" style="width:0%"></div></div>
+            <div class="progress-meta"><span id="featuredProgressText">整体进度：--</span><span id="featuredMilestone">预计下一里程碑：--</span></div>
           </div>
         </div>
 
@@ -240,55 +176,21 @@
           <div class="panel">
             <div class="section-title">
               <h3 style="margin:0;">项目进度总览</h3>
-              <span class="mock-tag">Mock 数据</span>
+              <span class="source-tag">真实数据文件</span>
             </div>
             <table>
               <thead>
                 <tr><th>项目</th><th>阶段</th><th>状态</th><th>阻塞</th><th>更新时间</th></tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>朝堂治理系统一期 Demo</td>
-                  <td>前端演示强化</td>
-                  <td><span class="status doing">进行中</span></td>
-                  <td><span class="status done">无</span></td>
-                  <td>2026-03-21 20:20</td>
-                </tr>
-                <tr>
-                  <td>项目进度可视化急件</td>
-                  <td>执行落地</td>
-                  <td><span class="status doing">进行中</span></td>
-                  <td><span class="status done">无</span></td>
-                  <td>2026-03-21 20:20</td>
-                </tr>
-                <tr>
-                  <td>权限边界初审</td>
-                  <td>审议完成</td>
-                  <td><span class="status done">已完成</span></td>
-                  <td><span class="status done">无</span></td>
-                  <td>2026-03-21 16:30</td>
-                </tr>
-                <tr>
-                  <td>国库统计模型预留</td>
-                  <td>待展开</td>
-                  <td><span class="status alert">待推进</span></td>
-                  <td><span class="status alert">有</span></td>
-                  <td>2026-03-21 15:50</td>
-                </tr>
-              </tbody>
+              <tbody id="overviewTableBody"></tbody>
             </table>
           </div>
           <div class="panel">
             <div class="section-title">
               <h3 style="margin:0;">近期动态 / 朝堂简报</h3>
-              <span class="mock-tag">Mock 数据</span>
+              <span class="source-tag">真实数据文件</span>
             </div>
-            <ul class="timeline">
-              <li>中书省已交“项目进度可视化”方案，门下省原则通过。</li>
-              <li>尚书省执行中，按审议意见补入“是否阻塞”与 Mock 标识。</li>
-              <li>当前 demo 已具备最小登录能力，正在补强进度一眼可见的首页。</li>
-              <li>下一里程碑：完成强化版后推送 GitHub，并更新 Vercel 线上地址。</li>
-            </ul>
+            <ul id="timelineList" class="timeline"></ul>
           </div>
         </div>
       </section>
@@ -299,72 +201,9 @@
             <h3 style="margin:0 0 6px;">项目进度页</h3>
             <div class="muted">聚焦“当前做到哪了”，优先展示阶段、进度、阻塞、下一步。</div>
           </div>
-          <span class="mock-tag">全部为 Mock / 演示数据</span>
+          <span class="source-tag">本地真实数据文件</span>
         </div>
-        <div class="project-list">
-          <div class="project-item">
-            <div class="project-item-top">
-              <div>
-                <h4 style="margin-bottom:6px;">朝堂治理系统一期 Demo</h4>
-                <div class="muted">当前阶段：前端演示强化 · 负责人：尚书省</div>
-              </div>
-              <div>
-                <span class="pill doing">进行中</span>
-                <span class="pill done">未阻塞</span>
-              </div>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width:68%"></div></div>
-            <div class="progress-meta"><span>完成度 68%</span><span>最近更新：2026-03-21 20:20</span></div>
-            <div class="kv">
-              <div class="cell"><div class="label">下一步动作</div><div class="value">补足项目页细节并重新部署</div></div>
-              <div class="cell"><div class="label">最近更新</div><div class="value">首页已补“阻塞/告警”与重点项目卡</div></div>
-              <div class="cell"><div class="label">里程碑</div><div class="value">强化版可访问演示上线</div></div>
-              <div class="cell"><div class="label">风险提示</div><div class="value">当前无硬阻塞，主要是页面细节补强</div></div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="project-item-top">
-              <div>
-                <h4 style="margin-bottom:6px;">项目进度可视化急件</h4>
-                <div class="muted">当前阶段：执行落地 · 负责人：尚书省</div>
-              </div>
-              <div>
-                <span class="pill doing">进行中</span>
-                <span class="pill done">未阻塞</span>
-              </div>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
-            <div class="progress-meta"><span>完成度 80%</span><span>最近更新：2026-03-21 20:20</span></div>
-            <div class="kv">
-              <div class="cell"><div class="label">下一步动作</div><div class="value">推 GitHub 并更新 Vercel</div></div>
-              <div class="cell"><div class="label">最近更新</div><div class="value">已补“是否阻塞”字段与 Mock 明示</div></div>
-              <div class="cell"><div class="label">依据方案</div><div class="value">中书省方案 + 门下省审议意见</div></div>
-              <div class="cell"><div class="label">验收口径</div><div class="value">10 秒内看出项目做到哪了</div></div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="project-item-top">
-              <div>
-                <h4 style="margin-bottom:6px;">国库统计模型预留</h4>
-                <div class="muted">当前阶段：待展开 · 负责人：户部 / 尚书省</div>
-              </div>
-              <div>
-                <span class="pill alert">待推进</span>
-                <span class="pill alert">有阻塞</span>
-              </div>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
-            <div class="progress-meta"><span>完成度 25%</span><span>最近更新：2026-03-21 15:50</span></div>
-            <div class="kv">
-              <div class="cell"><div class="label">下一步动作</div><div class="value">待一期核心可视化稳定后再展开</div></div>
-              <div class="cell"><div class="label">阻塞原因</div><div class="value">当前优先级让位于“进度可见”急件</div></div>
-              <div class="cell"><div class="label">风险</div><div class="value">后续若不补，会影响资源统计真实性</div></div>
-              <div class="cell"><div class="label">备注</div><div class="value">此项暂未进入本轮开发主线</div></div>
-            </div>
-          </div>
-        </div>
+        <div id="projectList" class="project-list"></div>
       </section>
 
       <section id="page-treasury" class="page">
@@ -376,7 +215,7 @@
         <div class="panel" style="margin-top:16px;">
           <h3>国库页</h3>
           <p class="muted">此页仍为演示区，后续将接入预算、消耗、趋势与项目资源统计。</p>
-          <span class="mock-tag">Mock / 演示数据</span>
+          <span class="warn-tag">当前未接真实国库数据</span>
         </div>
       </section>
 
@@ -384,16 +223,13 @@
         <div class="panel">
           <div class="section-title">
             <h3 style="margin:0;">告警页</h3>
-            <span class="mock-tag">Mock / 演示数据</span>
+            <span class="source-tag">真实数据文件</span>
           </div>
           <table>
             <thead>
               <tr><th>事项</th><th>级别</th><th>状态</th><th>说明</th></tr>
             </thead>
-            <tbody>
-              <tr><td>国库统计模型预留</td><td><span class="status warn">中</span></td><td><span class="status alert">待推进</span></td><td>当前让位于“项目进度可视化”急件。</td></tr>
-              <tr><td>多角色流转通知</td><td><span class="status warn">中</span></td><td><span class="status doing">已修正</span></td><td>角色组 @ 已移除，改用个人 &lt;@id&gt;。</td></tr>
-            </tbody>
+            <tbody id="alertsTableBody"></tbody>
           </table>
         </div>
       </section>
@@ -408,15 +244,109 @@
     const logoutBtn = document.getElementById('logoutBtn');
     const navLinks = document.querySelectorAll('.nav a');
     const pages = document.querySelectorAll('.page');
+    const refreshError = document.getElementById('refreshError');
+    let refreshTimer = null;
 
-    function showApp() {
-      loginView.classList.add('hidden');
-      appView.classList.remove('hidden');
+    function showApp() { loginView.classList.add('hidden'); appView.classList.remove('hidden'); }
+    function showLogin() { appView.classList.add('hidden'); loginView.classList.remove('hidden'); }
+    function formatStatusPill(label, className) { return `<span class="status ${className}">${label}</span>`; }
+    function blockedPill(blocked, label) { return `<span class="status ${blocked ? 'alert' : 'done'}">${label}</span>`; }
+
+    function renderOverviewTable(projects) {
+      document.getElementById('overviewTableBody').innerHTML = projects.map(project => `
+        <tr>
+          <td>${project.name}</td>
+          <td>${project.stage}</td>
+          <td>${formatStatusPill(project.statusLabel, project.status)}</td>
+          <td>${blockedPill(project.blocked, project.blockedLabel)}</td>
+          <td>${project.updatedAt}</td>
+        </tr>
+      `).join('');
     }
 
-    function showLogin() {
-      appView.classList.add('hidden');
-      loginView.classList.remove('hidden');
+    function renderTimeline(items) {
+      document.getElementById('timelineList').innerHTML = items.map(item => `<li>${item}</li>`).join('');
+    }
+
+    function renderProjects(projects) {
+      document.getElementById('projectList').innerHTML = projects.map(project => `
+        <div class="project-item">
+          <div class="project-item-top">
+            <div>
+              <h4 style="margin-bottom:6px;">${project.name}</h4>
+              <div class="muted">当前阶段：${project.stage} · 负责人：${project.owner}</div>
+            </div>
+            <div>
+              <span class="pill ${project.status}">${project.statusLabel}</span>
+              <span class="pill ${project.blocked ? 'alert' : 'done'}">${project.blocked ? '有阻塞' : '未阻塞'}</span>
+            </div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${project.progress}%"></div></div>
+          <div class="progress-meta"><span>完成度 ${project.progress}%</span><span>最近更新：${project.updatedAt}</span></div>
+          <div class="kv">
+            <div class="cell"><div class="label">下一步动作</div><div class="value">${project.nextAction}</div></div>
+            <div class="cell"><div class="label">最近更新</div><div class="value">${project.latestUpdate}</div></div>
+            <div class="cell"><div class="label">里程碑</div><div class="value">${project.milestone}</div></div>
+            <div class="cell"><div class="label">风险提示</div><div class="value">${project.risk}</div></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderAlerts(alerts) {
+      document.getElementById('alertsTableBody').innerHTML = alerts.map(alert => `
+        <tr>
+          <td>${alert.item}</td>
+          <td><span class="status ${alert.levelClass}">${alert.level}</span></td>
+          <td><span class="status ${alert.statusClass}">${alert.status}</span></td>
+          <td>${alert.description}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderData(data) {
+      document.getElementById('dataSourceTag').textContent = `数据来源：${data.source}`;
+      document.getElementById('lastUpdatedText').textContent = data.lastUpdated;
+      document.getElementById('refreshIntervalText').textContent = `${Math.floor(data.refreshIntervalMs / 1000)} 秒`;
+      document.getElementById('metricTotal').textContent = data.summary.total;
+      document.getElementById('metricProgress').textContent = data.summary.inProgress;
+      document.getElementById('metricDone').textContent = data.summary.done;
+      document.getElementById('metricBlocked').textContent = data.summary.blocked;
+
+      const featured = data.featuredProject;
+      document.getElementById('featuredName').textContent = `当前重点项目：${featured.name}`;
+      document.getElementById('featuredGoal').textContent = `目标：${featured.goal}`;
+      const featuredStatus = document.getElementById('featuredStatus');
+      featuredStatus.textContent = featured.status === 'done' ? '已完成' : featured.status === 'alert' ? '待推进' : '执行中';
+      featuredStatus.className = `pill ${featured.status}`;
+      document.getElementById('featuredStage').textContent = featured.stage;
+      document.getElementById('featuredOwner').textContent = featured.owner;
+      document.getElementById('featuredNext').textContent = featured.nextAction;
+      document.getElementById('featuredBlocked').innerHTML = blockedPill(featured.blocked, featured.blocked ? '是' : '否');
+      document.getElementById('featuredProgressBar').style.width = `${featured.progress}%`;
+      document.getElementById('featuredProgressText').textContent = `整体进度：${featured.progress}%`;
+      document.getElementById('featuredMilestone').textContent = `预计下一里程碑：${featured.milestone}`;
+
+      renderOverviewTable(data.projects);
+      renderTimeline(data.timeline);
+      renderProjects(data.projects);
+      renderAlerts(data.alerts);
+    }
+
+    async function loadData() {
+      try {
+        const response = await fetch(`./data/projects.json?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error('fetch failed');
+        const data = await response.json();
+        renderData(data);
+        refreshError.classList.add('hidden');
+        if (refreshTimer) clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(loadData, data.refreshIntervalMs || 15000);
+      } catch (error) {
+        refreshError.classList.remove('hidden');
+        if (refreshTimer) clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(loadData, 15000);
+      }
     }
 
     loginForm.addEventListener('submit', (e) => {
@@ -427,6 +357,7 @@
         loginError.textContent = '';
         localStorage.setItem('court-demo-auth', 'ok');
         showApp();
+        loadData();
       } else {
         loginError.textContent = '用户名或密码不正确。';
       }
@@ -450,6 +381,7 @@
 
     if (localStorage.getItem('court-demo-auth') === 'ok') {
       showApp();
+      loadData();
     }
   </script>
 </body>
