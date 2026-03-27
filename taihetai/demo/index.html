@@ -173,6 +173,7 @@
             <div id="lastViewedStatusSummary" class="source-tag" style="align-self:center;">最近查看项目状态：--</div>
             <div id="lastViewedBottleneckSummary" class="source-tag" style="align-self:center;">最近查看项目卡点：--</div>
             <div id="lastViewedNextActionSummary" class="source-tag" style="align-self:center;">最近查看项目下一步：--</div>
+            <div id="lastViewedOwnerSummary" class="source-tag" style="align-self:center;">最近查看项目负责人：--</div>
             <button id="goHighRiskBtn" type="button" class="hero-entry-btn">查看高风险项目</button>
             <button id="goBlockedBtn" type="button" class="hero-entry-btn">查看阻塞项目</button>
             <button id="goDelayedBtn" type="button" class="hero-entry-btn">查看延期项目</button>
@@ -666,6 +667,7 @@
       document.getElementById('lastViewedStatusSummary').textContent = lastViewedProject ? `最近查看项目状态：${lastViewedProject.name}｜${lastViewedProject.statusLabel}` : '最近查看项目状态：暂无';
       document.getElementById('lastViewedBottleneckSummary').textContent = lastViewedProject ? `最近查看项目卡点：${lastViewedProject.stage}` : '最近查看项目卡点：暂无';
       document.getElementById('lastViewedNextActionSummary').textContent = lastViewedProject ? `最近查看项目下一步：${lastViewedProject.nextAction}` : '最近查看项目下一步：暂无';
+      document.getElementById('lastViewedOwnerSummary').textContent = lastViewedProject ? `最近查看项目负责人：${lastViewedProject.owner}` : '最近查看项目负责人：暂无';
       if (lastViewed && latestProjects.length) {
         const matched = latestProjects.find(project => project.name === lastViewed);
         if (matched) {
