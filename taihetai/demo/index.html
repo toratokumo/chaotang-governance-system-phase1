@@ -389,6 +389,7 @@
     function renderProjectHero(project) {
       if (!project) {
         document.getElementById('projectHeroName').textContent = '暂无项目数据';
+        document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无数据 ｜ 数据来源：暂无数据';
         document.getElementById('projectHeroMeta').textContent = '当前暂无可展示的项目进度数据。';
         document.getElementById('projectHeroBottleneckBanner').textContent = '当前卡点：暂无数据';
         document.getElementById('projectHeroNextActionBanner').textContent = '下一步动作：暂无数据';
@@ -404,6 +405,7 @@
         document.getElementById('projectHeroRiskFlag').textContent = '暂无数据';
         document.getElementById('projectHeroUpdatedAt').textContent = '--';
         document.getElementById('projectHeroPhases').innerHTML = '<span class="phase-node">等待数据</span>';
+        document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '当前阶段条（暂无数据）';
         document.getElementById('projectHeroRefreshTag').textContent = '最近刷新：--';
         document.getElementById('projectHeroBlockedTag').textContent = '是否阻塞：--';
         document.getElementById('projectHeroDelayedTag').textContent = '延期标记：--';
@@ -413,6 +415,7 @@
         document.getElementById('projectHeroNextActionTag').textContent = '下一步动作：--';
         return;
       }
+      document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '当前阶段条';
       document.getElementById('projectHeroName').textContent = project.name;
       document.getElementById('projectHeroMeta').textContent = `当前阶段：${project.stage} · 当前状态：${project.statusLabel} · 负责人：${project.owner}`;
       document.getElementById('projectHeroBottleneckBanner').textContent = `当前卡点：${project.stage}`;
