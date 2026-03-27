@@ -72,6 +72,9 @@
     .page.active { display:block; }
     .section-title { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
     .project-list { display:grid; gap:14px; }
+    .filter-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    .filter-btn { background:rgba(255,255,255,0.06); color:var(--text); border:1px solid var(--border); }
+    .filter-btn.active { background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#201700; }
     .project-item { padding:16px; border:1px solid var(--border); border-radius:16px; background:rgba(255,255,255,0.02); }
     .project-item-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:10px; }
     .kv { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:10px; }
@@ -264,6 +267,12 @@
             <div class="cell"><div class="label">更新时间</div><div id="projectHeroUpdatedAt" class="value">--</div></div>
           </div>
         </div>
+        <div id="projectFilterRow" class="filter-row">
+          <button type="button" class="filter-btn active" data-filter="all">全部</button>
+          <button type="button" class="filter-btn" data-filter="doing">进行中</button>
+          <button type="button" class="filter-btn" data-filter="alert">阻塞中 / 待处理</button>
+          <button type="button" class="filter-btn" data-filter="done">已完成</button>
+        </div>
         <div id="projectList" class="project-list"></div>
       </section>
 
@@ -308,7 +317,10 @@
     const refreshError = document.getElementById('refreshError');
     const goProjectsBtn = document.getElementById('goProjectsBtn');
     const backOverviewBtn = document.getElementById('backOverviewBtn');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     let refreshTimer = null;
+    let currentFilter = 'all';
+    let latestProjects = [];
 
     function showApp() { loginView.classList.add('hidden'); appView.classList.remove('hidden'); }
     function showLogin() { appView.classList.add('hidden'); loginView.classList.remove('hidden'); }
@@ -371,13 +383,20 @@
     }
 
     function renderProjects(projects) {
+      latestProjects = projects || [];
+      const filteredProjects = currentFilter === 'all' ? latestProjects : latestProjects.filter(project => currentFilter === 'alert' ? project.status === 'alert' : project.status === currentFilter);
+      if (!filteredProjects || filteredProjects.length === 0) {
+        renderProjectHero(latestProjects[0] || null);
+        document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">当前筛选下暂无项目，请切换筛选条件。</div></div>';
+        return;
+      }
       if (!projects || projects.length === 0) {
         renderProjectHero(null);
         document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">暂无项目数据，请稍后刷新或检查数据源。</div></div>';
         return;
       }
-      renderProjectHero(projects[0]);
-      document.getElementById('projectList').innerHTML = projects.map(project => `
+      renderProjectHero(filteredProjects[0]);
+      document.getElementById('projectList').innerHTML = filteredProjects.map(project => `
         <div class="project-item">
           <div class="project-item-top">
             <div>
@@ -521,6 +540,15 @@
 
     backOverviewBtn.addEventListener('click', () => {
       switchPage('overview');
+    });
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        currentFilter = button.dataset.filter;
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        renderProjects(latestProjects);
+      });
     });
 
     if (localStorage.getItem('court-demo-auth') === 'ok') {
