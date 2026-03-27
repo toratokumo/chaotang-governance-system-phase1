@@ -286,6 +286,7 @@
             <option value="milestone-asc">按下一里程碑时间排序</option>
             <option value="updated-desc">按更新时间排序</option>
             <option value="owner-asc">按负责人排序</option>
+            <option value="name-asc">按项目名称排序</option>
           </select>
         </div>
         <div id="projectList" class="project-list"></div>
@@ -423,6 +424,8 @@
         filteredProjects = [...filteredProjects].sort((a, b) => (b.updatedAt || '').localeCompare(a.updatedAt || ''));
       } else if (currentSort === 'owner-asc') {
         filteredProjects = [...filteredProjects].sort((a, b) => (a.owner || '').localeCompare(b.owner || ''));
+      } else if (currentSort === 'name-asc') {
+        filteredProjects = [...filteredProjects].sort((a, b) => (a.name || '').localeCompare(b.name || ''));
       }
       if (!filteredProjects || filteredProjects.length === 0) {
         renderProjectHero(latestProjects[0] || null);
