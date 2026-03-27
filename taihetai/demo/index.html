@@ -270,6 +270,7 @@
           <div id="projectHeroOwnerBanner" class="bottleneck-banner">负责人：--</div>
           <div id="projectHeroMilestoneTimeBanner" class="bottleneck-banner">下一里程碑时间：--</div>
           <div id="projectHeroRiskBanner" class="bottleneck-banner">风险/延期：--</div>
+          <div id="projectHeroProgressBanner" class="bottleneck-banner">当前进度：--</div>
           <div id="projectHeroUpdatedBanner" class="bottleneck-banner">最近更新时间：--</div>
           <div id="projectHeroSourceBanner" class="bottleneck-banner">数据来源：--</div>
           <div id="projectHeroRefreshAlertBanner" class="bottleneck-banner">刷新状态：正常</div>
@@ -396,6 +397,7 @@
         document.getElementById('projectHeroOwnerBanner').textContent = '负责人：暂无数据';
         document.getElementById('projectHeroMilestoneTimeBanner').textContent = '下一里程碑时间：暂无数据';
         document.getElementById('projectHeroRiskBanner').textContent = '风险/延期：暂无数据';
+        document.getElementById('projectHeroProgressBanner').textContent = '当前进度：暂无数据';
         document.getElementById('projectHeroUpdatedBanner').textContent = '最近更新时间：暂无数据';
         document.getElementById('projectHeroSourceBanner').textContent = '数据来源：暂无数据';
         document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：暂无数据';
@@ -421,6 +423,7 @@
       document.getElementById('projectHeroOwnerBanner').textContent = `负责人：${project.owner}`;
       document.getElementById('projectHeroMilestoneTimeBanner').textContent = `下一里程碑时间：${project.nextMilestoneTime || '待定'}`;
       document.getElementById('projectHeroRiskBanner').textContent = `风险/延期：${project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险')}`;
+      document.getElementById('projectHeroProgressBanner').textContent = `当前进度：${project.progress}%`;
       document.getElementById('projectHeroUpdatedBanner').textContent = `最近更新时间：${project.updatedAt}`;
       document.getElementById('projectHeroSourceBanner').textContent = '数据来源：本地真实数据文件';
       document.getElementById('projectHeroCurrentNode').textContent = project.phaseFlow?.[project.currentPhaseIndex] || project.stage;
