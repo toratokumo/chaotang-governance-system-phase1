@@ -271,6 +271,7 @@
           <div id="projectHeroRiskBanner" class="bottleneck-banner">风险/延期：--</div>
           <div id="projectHeroUpdatedBanner" class="bottleneck-banner">最近更新时间：--</div>
           <div id="projectHeroSourceBanner" class="bottleneck-banner">数据来源：--</div>
+          <div id="projectHeroRefreshAlertBanner" class="bottleneck-banner">刷新状态：正常</div>
           <div style="margin:10px 0;">
             <button id="backToProjectListBtn" type="button">返回项目列表</button>
             <button id="backHomeFromProjectBtn" type="button" style="margin-left:8px;">返回首页总览</button>
@@ -393,6 +394,7 @@
         document.getElementById('projectHeroRiskBanner').textContent = '风险/延期：暂无数据';
         document.getElementById('projectHeroUpdatedBanner').textContent = '最近更新时间：暂无数据';
         document.getElementById('projectHeroSourceBanner').textContent = '数据来源：暂无数据';
+        document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：暂无数据';
         document.getElementById('projectHeroCurrentNode').textContent = '--';
         document.getElementById('projectHeroNextMilestone').textContent = '--';
         document.getElementById('projectHeroRiskFlag').textContent = '暂无数据';
@@ -566,12 +568,14 @@
         renderData(data);
         refreshError.classList.add('hidden');
         document.getElementById('projectHeroAlertTag').textContent = '拉取状态：正常';
+        document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：正常';
         document.getElementById('projectHeroAlertTag').className = 'warn-tag';
         if (refreshTimer) clearTimeout(refreshTimer);
         refreshTimer = setTimeout(loadData, data.refreshIntervalMs || 15000);
       } catch (error) {
         refreshError.classList.remove('hidden');
         document.getElementById('projectHeroAlertTag').textContent = '拉取状态：失败';
+        document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：异常';
         document.getElementById('projectHeroAlertTag').className = 'warn-tag alert';
         if (refreshTimer) clearTimeout(refreshTimer);
         refreshTimer = setTimeout(loadData, 15000);
