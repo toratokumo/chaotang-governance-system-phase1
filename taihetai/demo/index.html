@@ -170,6 +170,7 @@
           <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
             <button id="goProjectsBtn" type="button" class="hero-entry-btn">查看全部项目与详细进度</button>
             <button id="goLastViewedBtn" type="button" class="hero-entry-btn">返回上次查看的项目详情</button>
+            <button id="goHighRiskBtn" type="button" class="hero-entry-btn">查看高风险项目</button>
           </div>
           <div class="source-tag" style="margin-top:10px; font-weight:700; font-size:13px;">
             <span>数据来源</span>：<span id="dataSourceTag">本地真实数据文件</span>
@@ -353,6 +354,7 @@
     const refreshError = document.getElementById('refreshError');
     const goProjectsBtn = document.getElementById('goProjectsBtn');
     const goLastViewedBtn = document.getElementById('goLastViewedBtn');
+    const goHighRiskBtn = document.getElementById('goHighRiskBtn');
     const backOverviewBtn = document.getElementById('backOverviewBtn');
     const backToProjectListBtn = document.getElementById('backToProjectListBtn');
     const backHomeFromProjectBtn = document.getElementById('backHomeFromProjectBtn');
@@ -641,6 +643,15 @@
         }
       }
       switchPage('projects');
+    });
+
+    goHighRiskBtn.addEventListener('click', () => {
+      currentFilter = 'high-risk';
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      const highRiskBtn = document.querySelector('.filter-btn[data-filter="high-risk"]');
+      if (highRiskBtn) highRiskBtn.classList.add('active');
+      switchPage('projects');
+      renderProjects(latestProjects);
     });
 
     backOverviewBtn.addEventListener('click', () => {
