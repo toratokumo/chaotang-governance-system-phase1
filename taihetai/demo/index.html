@@ -211,7 +211,7 @@
         <div class="panel project-focus" style="margin-bottom:20px;">
           <div class="section-title">
             <div>
-              <div class="warn-tag" style="margin-bottom:8px;">当前最紧急项目</div><h3 id="featuredName" style="margin-bottom:6px;">--</h3>
+              <div class="warn-tag" style="margin-bottom:8px;">当前最紧急项目</div><h3 id="featuredName" style="margin-bottom:6px;">--</h3><button id="goFeaturedProjectBtn" type="button" class="hero-entry-btn" style="margin-bottom:10px;">立即进入最紧急项目详情</button>
               <div id="featuredGoal" class="muted">--</div>
             </div>
             <span id="featuredStatus" class="pill doing">--</span>
@@ -371,6 +371,7 @@
     const refreshError = document.getElementById('refreshError');
     const heroSummaryPanel = document.getElementById('heroSummaryPanel');
     const toggleHeroSummaryBtn = document.getElementById('toggleHeroSummaryBtn');
+    const goFeaturedProjectBtn = document.getElementById('goFeaturedProjectBtn');
     const goProjectsBtn = document.getElementById('goProjectsBtn');
     const goLastViewedBtn = document.getElementById('goLastViewedBtn');
     const goHighRiskBtn = document.getElementById('goHighRiskBtn');
@@ -671,6 +672,15 @@
 
     toggleHeroSummaryBtn.addEventListener('click', () => {
       setHeroSummaryCollapsed(heroSummaryPanel.style.display !== 'none');
+    });
+
+    goFeaturedProjectBtn.addEventListener('click', () => {
+      switchPage('projects');
+      if (latestProjects.length) {
+        const featuredName = document.getElementById('featuredName').textContent.replace('当前最紧急项目：', '').trim();
+        const matched = latestProjects.find(project => project.name === featuredName);
+        if (matched) renderProjectHero(matched);
+      }
     });
 
     goProjectsBtn.addEventListener('click', () => {
