@@ -269,6 +269,7 @@
           <div id="projectHeroOwnerBanner" class="bottleneck-banner">负责人：--</div>
           <div id="projectHeroMilestoneTimeBanner" class="bottleneck-banner">下一里程碑时间：--</div>
           <div id="projectHeroRiskBanner" class="bottleneck-banner">风险/延期：--</div>
+          <div id="projectHeroUpdatedBanner" class="bottleneck-banner">最近更新时间：--</div>
           <div style="margin:10px 0;">
             <button id="backToProjectListBtn" type="button">返回项目列表</button>
             <button id="backHomeFromProjectBtn" type="button" style="margin-left:8px;">返回首页总览</button>
@@ -389,6 +390,7 @@
         document.getElementById('projectHeroOwnerBanner').textContent = '负责人：暂无数据';
         document.getElementById('projectHeroMilestoneTimeBanner').textContent = '下一里程碑时间：暂无数据';
         document.getElementById('projectHeroRiskBanner').textContent = '风险/延期：暂无数据';
+        document.getElementById('projectHeroUpdatedBanner').textContent = '最近更新时间：暂无数据';
         document.getElementById('projectHeroCurrentNode').textContent = '--';
         document.getElementById('projectHeroNextMilestone').textContent = '--';
         document.getElementById('projectHeroRiskFlag').textContent = '暂无数据';
@@ -411,6 +413,7 @@
       document.getElementById('projectHeroOwnerBanner').textContent = `负责人：${project.owner}`;
       document.getElementById('projectHeroMilestoneTimeBanner').textContent = `下一里程碑时间：${project.nextMilestoneTime || '待定'}`;
       document.getElementById('projectHeroRiskBanner').textContent = `风险/延期：${project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险')}`;
+      document.getElementById('projectHeroUpdatedBanner').textContent = `最近更新时间：${project.updatedAt}`;
       document.getElementById('projectHeroCurrentNode').textContent = project.phaseFlow?.[project.currentPhaseIndex] || project.stage;
       document.getElementById('projectHeroNextMilestone').textContent = project.nextMilestone || project.milestone || '--';
       document.getElementById('projectHeroRiskFlag').textContent = project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险');
