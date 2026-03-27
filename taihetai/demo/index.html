@@ -175,6 +175,7 @@
             <div id="lastViewedNextActionSummary" class="source-tag" style="align-self:center;">最近查看项目下一步：--</div>
             <div id="lastViewedOwnerSummary" class="source-tag" style="align-self:center;">最近查看项目负责人：--</div>
             <div id="lastViewedMilestoneSummary" class="source-tag" style="align-self:center;">最近查看项目里程碑时间：--</div>
+            <div id="lastViewedRiskSummary" class="source-tag" style="align-self:center;">最近查看项目风险/延期：--</div>
             <button id="goHighRiskBtn" type="button" class="hero-entry-btn">查看高风险项目</button>
             <button id="goBlockedBtn" type="button" class="hero-entry-btn">查看阻塞项目</button>
             <button id="goDelayedBtn" type="button" class="hero-entry-btn">查看延期项目</button>
@@ -670,6 +671,7 @@
       document.getElementById('lastViewedNextActionSummary').textContent = lastViewedProject ? `最近查看项目下一步：${lastViewedProject.nextAction}` : '最近查看项目下一步：暂无';
       document.getElementById('lastViewedOwnerSummary').textContent = lastViewedProject ? `最近查看项目负责人：${lastViewedProject.owner}` : '最近查看项目负责人：暂无';
       document.getElementById('lastViewedMilestoneSummary').textContent = lastViewedProject ? `最近查看项目里程碑时间：${lastViewedProject.nextMilestoneTime || '待定'}` : '最近查看项目里程碑时间：暂无';
+      document.getElementById('lastViewedRiskSummary').textContent = lastViewedProject ? `最近查看项目风险/延期：${lastViewedProject.delayed ? '有延期风险' : (lastViewedProject.blocked ? '有阻塞风险' : '当前无明显风险')}` : '最近查看项目风险/延期：暂无';
       if (lastViewed && latestProjects.length) {
         const matched = latestProjects.find(project => project.name === lastViewed);
         if (matched) {
