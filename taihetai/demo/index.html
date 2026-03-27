@@ -262,6 +262,9 @@
           </div>
           <div id="projectHeroName" style="font-size:20px; font-weight:700; margin-bottom:6px;">--</div>
           <div id="projectHeroMeta" class="muted">--</div>
+          <div style="margin:10px 0;">
+            <button id="backToProjectListBtn" type="button">返回项目列表</button>
+          </div>
           <div id="projectHeroPhases" class="phase-strip"></div>
           <div class="kv">
             <div class="cell"><div class="label">当前节点</div><div id="projectHeroCurrentNode" class="value">--</div></div>
@@ -334,6 +337,7 @@
     const refreshError = document.getElementById('refreshError');
     const goProjectsBtn = document.getElementById('goProjectsBtn');
     const backOverviewBtn = document.getElementById('backOverviewBtn');
+    const backToProjectListBtn = document.getElementById('backToProjectListBtn');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const ownerFilterSelect = document.getElementById('ownerFilterSelect');
     const keywordSearchInput = document.getElementById('keywordSearchInput');
@@ -587,6 +591,10 @@
 
     backOverviewBtn.addEventListener('click', () => {
       switchPage('overview');
+    });
+
+    backToProjectListBtn.addEventListener('click', () => {
+      document.getElementById('projectList').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     filterButtons.forEach(button => {
