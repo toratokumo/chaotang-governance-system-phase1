@@ -66,6 +66,9 @@
     .progress-fill { height:100%; background:linear-gradient(90deg, var(--gold), var(--gold-2)); border-radius:999px; }
     .progress-meta { display:flex; justify-content:space-between; margin-top:6px; font-size:12px; color:var(--muted); }
     .project-focus { border:1px solid rgba(212,175,55,0.22); background:linear-gradient(180deg, rgba(212,175,55,0.05), rgba(18,26,43,0.95)); }
+    .court-cockpit { border:1px solid rgba(212,175,55,0.22); background:linear-gradient(180deg, rgba(212,175,55,0.07), rgba(18,26,43,0.95)); box-shadow:var(--shadow); }
+    .court-cockpit .section-title h3 { color: var(--gold-2); }
+    .court-cockpit .hero-primary { background:rgba(212,175,55,0.05); }
     ul.timeline { list-style:none; padding:0; margin:0; }
     ul.timeline li { padding:12px 0; border-bottom:1px solid var(--border); }
     .page { display:none; }
@@ -194,13 +197,13 @@
 
       <div id="refreshError" class="error-box hidden">刷新异常：数据拉取失败，当前总览可能不是最新状态。</div>
 
-      <div class="panel" style="margin-bottom:20px;">
+      <div class="panel court-cockpit" style="margin-bottom:20px;">
         <div class="section-title">
           <div>
             <h3 style="margin:0 0 6px;">朝堂驾驶舱</h3>
             <div class="muted">按“系统状态 → 当前最急 → 风险总览 → 待处理”收束展示。</div>
           </div>
-          <span class="source-tag">数据驱动看板</span>
+          <span class="warn-tag">朝堂驾驶舱</span>
         </div>
         <div class="kv">
           <div class="cell"><div class="label">系统状态</div><div id="cockpitFetchStatus" class="value">--</div></div>
@@ -277,13 +280,13 @@
             <button id="backOverviewBtn" type="button" style="margin-left:8px;">返回首页总览</button>
           </div>
         </div>
-        <div class="panel" style="margin-bottom:16px;">
+        <div class="panel court-cockpit" style="margin-bottom:16px;">
           <div class="section-title">
             <div>
               <h3 style="margin:0 0 6px;">项目驾驶舱</h3>
               <div class="muted">按“状态 → 卡点 → 下一步 → 风险”集中查看单项目。</div>
             </div>
-            <span class="source-tag">项目看板</span>
+            <span class="warn-tag">朝堂项目驾驶舱</span>
           </div>
           <div class="kv hero-kv" style="margin-top:0;">
             <div class="cell hero-primary"><div class="label">项目状态</div><div id="projectCockpitStatus" class="value">--</div></div>
