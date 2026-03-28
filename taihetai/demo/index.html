@@ -41,6 +41,8 @@
     input { width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:var(--panel-2); color:var(--text); outline:none; }
     button { padding:12px 16px; border:none; border-radius:12px; cursor:pointer; background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#201700; font-weight:700; }
     .hero-entry-btn { margin-top: 14px; padding: 14px 18px; font-size: 15px; box-shadow: var(--shadow); }
+    .action-btn-primary { background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#201700; font-weight:800; }
+    .action-btn-secondary { background:rgba(255,255,255,0.06); color:var(--text); border:1px solid var(--border); font-weight:700; }
     .hint { font-size:13px; color:var(--muted); }
     .app-shell { display:grid; grid-template-columns:240px 1fr; min-height:100vh; }
     .sidebar { background:rgba(10,16,28,0.95); border-right:1px solid var(--border); padding:24px 18px; }
@@ -169,20 +171,20 @@
             <div class="progress-meta"><span id="heroTopProgressText">当前进度：--</span><span id="heroTopStageText">当前卡点：--</span></div>
           </div>
           <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
-            <button id="goProjectsBtn" type="button" class="hero-entry-btn">查看全部项目与详细进度</button>
-            <button id="goLastViewedBtn" type="button" class="hero-entry-btn" style="font-size:16px; font-weight:800; border:2px solid rgba(212,175,55,0.45);">立即返回最近查看项目</button>
+            <button id="goProjectsBtn" type="button" class="hero-entry-btn action-btn-primary">查看全部项目与详细进度</button>
+            <button id="goLastViewedBtn" type="button" class="hero-entry-btn action-btn-primary" style="font-size:16px; font-weight:800; border:2px solid rgba(212,175,55,0.45);">立即返回最近查看项目</button>
             <div id="lastViewedStatusSummary" class="source-tag" style="align-self:center;">最近查看项目状态：--</div>
             <div id="lastViewedBottleneckSummary" class="source-tag" style="align-self:center;">最近查看项目卡点：--</div>
             <div id="lastViewedNextActionSummary" class="source-tag" style="align-self:center;">最近查看项目下一步：--</div>
             <div id="lastViewedOwnerSummary" class="source-tag" style="align-self:center;">最近查看项目负责人：--</div>
             <div id="lastViewedMilestoneSummary" class="source-tag" style="align-self:center;">最近查看项目里程碑时间：--</div>
             <div id="lastViewedRiskSummary" class="source-tag" style="align-self:center;">最近查看项目风险/延期：--</div>
-            <button id="goHighRiskBtn" type="button" class="hero-entry-btn">查看高风险项目</button>
-            <button id="goBlockedBtn" type="button" class="hero-entry-btn">查看阻塞项目</button>
-            <button id="goDelayedBtn" type="button" class="hero-entry-btn">查看延期项目</button>
-            <button id="goRecentBtn" type="button" class="hero-entry-btn">查看最近更新项目</button>
-            <button id="goPendingBtn" type="button" class="hero-entry-btn">查看待处理项目</button>
-            <button id="goDoneBtn" type="button" class="hero-entry-btn">查看已完成项目</button>
+            <button id="goHighRiskBtn" type="button" class="hero-entry-btn action-btn-secondary">查看高风险项目</button>
+            <button id="goBlockedBtn" type="button" class="hero-entry-btn action-btn-secondary">查看阻塞项目</button>
+            <button id="goDelayedBtn" type="button" class="hero-entry-btn action-btn-secondary">查看延期项目</button>
+            <button id="goRecentBtn" type="button" class="hero-entry-btn action-btn-secondary">查看最近更新项目</button>
+            <button id="goPendingBtn" type="button" class="hero-entry-btn action-btn-secondary">查看待处理项目</button>
+            <button id="goDoneBtn" type="button" class="hero-entry-btn action-btn-secondary">查看已完成项目</button>
           </div>
           <div class="source-tag" style="margin-top:10px; font-weight:700; font-size:13px;">
             最近更新时间：<span id="topMetaUpdated">--</span> ｜ 数据来源：<span id="dataSourceTag">本地真实数据文件</span>
@@ -225,7 +227,7 @@
         <div class="panel project-focus" style="margin-bottom:20px;">
           <div class="section-title">
             <div>
-              <div class="warn-tag" style="margin-bottom:8px;">当前最紧急项目</div><h3 id="featuredName" style="margin-bottom:6px;">--</h3><button id="goFeaturedProjectBtn" type="button" class="hero-entry-btn" style="margin-bottom:10px;">立即进入最紧急项目详情</button>
+              <div class="warn-tag" style="margin-bottom:8px;">当前最紧急项目</div><h3 id="featuredName" style="margin-bottom:6px;">--</h3><button id="goFeaturedProjectBtn" type="button" class="hero-entry-btn action-btn-primary" style="margin-bottom:10px;">立即进入最紧急项目详情</button>
           <div class="kv hero-kv" style="margin-top:0; margin-bottom:10px;">
             <div class="cell hero-primary"><div class="label">最紧急项目当前状态</div><div id="featuredTopStatus" class="value">--</div></div>
             <div class="cell hero-primary"><div class="label">最紧急项目当前卡点</div><div id="featuredTopBottleneck" class="value">--</div></div>
@@ -278,7 +280,7 @@
           </div>
           <div>
             <span class="source-tag">本地真实数据文件</span>
-            <button id="backOverviewBtn" type="button" style="margin-left:8px;">返回首页总览</button>
+            <button id="backOverviewBtn" type="button" class="action-btn-primary" style="margin-left:8px;">返回首页总览</button>
           </div>
         </div>
         <div class="panel court-cockpit" style="margin-bottom:16px;">
@@ -327,11 +329,11 @@
           <div id="projectHeroMetaBanner" class="bottleneck-banner">最近更新时间：-- ｜ 数据来源：--</div>
           <div id="projectHeroRefreshAlertBanner" class="bottleneck-banner">刷新状态：正常</div>
           <div style="margin:10px 0; display:flex; gap:8px; flex-wrap:wrap;">
-            <button id="backToProjectListBtn" type="button">返回项目列表</button>
-            <button id="backHomeFromProjectBtn" type="button">返回首页总览</button>
-            <button id="prevProjectBtn" type="button">上一项目</button>
-            <button id="nextProjectBtn" type="button">下一项目</button>
-            <button id="copyProjectLinkBtn" type="button">复制项目链接</button>
+            <button id="backToProjectListBtn" type="button" class="action-btn-primary">返回项目列表</button>
+            <button id="backHomeFromProjectBtn" type="button" class="action-btn-primary">返回首页总览</button>
+            <button id="prevProjectBtn" type="button" class="action-btn-secondary">上一项目</button>
+            <button id="nextProjectBtn" type="button" class="action-btn-secondary">下一项目</button>
+            <button id="copyProjectLinkBtn" type="button" class="action-btn-secondary">复制项目链接</button>
           </div>
           <div id="projectHeroPhaseBanner" class="hero-phase-strip">
             <div style="margin-bottom:8px; font-weight:700; color: var(--gold-2);">当前阶段条</div>
