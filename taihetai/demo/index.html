@@ -53,6 +53,8 @@
     .topbar { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; margin-bottom:24px; background:rgba(18,26,43,0.9); border:1px solid var(--border); border-radius:20px; padding:24px; }
     .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
     .card, .panel { background:rgba(18,26,43,0.92); border:1px solid var(--border); border-radius:20px; padding:20px; box-shadow:var(--shadow); }
+    .subtle-card { background:rgba(255,255,255,0.02); border-color:rgba(255,255,255,0.05); box-shadow:none; }
+    .subtle-card .muted { color: rgba(154,168,194,0.78); }
     .metric { font-size:30px; font-weight:800; margin:8px 0 0; }
     .grid-2 { display:grid; grid-template-columns:1.3fr 1fr; gap:16px; }
     .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -208,10 +210,10 @@
 
       <section id="page-overview" class="page active">
         <div class="cards">
-          <div class="card"><div class="muted">项目总数</div><div id="metricTotal" class="metric">--</div></div>
-          <div class="card"><div class="muted">进行中</div><div id="metricProgress" class="metric">--</div></div>
-          <div class="card"><div class="muted">已完成</div><div id="metricDone" class="metric">--</div></div>
-          <div class="card"><div class="muted">阻塞 / 告警</div><div id="metricBlocked" class="metric">--</div></div>
+          <div class="card subtle-card"><div class="muted">项目总数</div><div id="metricTotal" class="metric">--</div></div>
+          <div class="card subtle-card"><div class="muted">进行中</div><div id="metricProgress" class="metric">--</div></div>
+          <div class="card subtle-card"><div class="muted">已完成</div><div id="metricDone" class="metric">--</div></div>
+          <div class="card subtle-card"><div class="muted">阻塞 / 告警</div><div id="metricBlocked" class="metric">--</div></div>
         </div>
 
         <div class="panel project-focus" style="margin-bottom:20px;">
