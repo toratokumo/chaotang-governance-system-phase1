@@ -185,7 +185,7 @@
             <button id="goDoneBtn" type="button" class="hero-entry-btn">查看已完成项目</button>
           </div>
           <div class="source-tag" style="margin-top:10px; font-weight:700; font-size:13px;">
-            <span>数据来源</span>：<span id="dataSourceTag">本地真实数据文件</span>
+            最近更新时间：<span id="topMetaUpdated">--</span> ｜ 数据来源：<span id="dataSourceTag">本地真实数据文件</span>
           </div>
         </div>
         <div style="text-align:right;">
@@ -305,9 +305,7 @@
           <div class="section-title">
             <h3 style="margin:0;">项目页首屏焦点</h3>
             <div>
-              <span class="source-tag">首屏阶段条</span>
-              <span id="projectHeroSourceTag" class="source-tag" style="margin-left:8px;">数据来源：本地真实数据文件</span>
-              <span id="projectHeroRefreshTag" class="source-tag" style="margin-left:8px;">最近刷新：--</span>
+              <span class="source-tag">最近更新时间：<span id="projectHeroRefreshInline">--</span> ｜ 数据来源：<span id="projectHeroSourceInline">本地真实数据文件</span></span>
               <span id="projectHeroAlertTag" class="warn-tag" style="margin-left:8px;">拉取状态：正常</span>
               <span id="projectHeroBlockedTag" class="source-tag" style="margin-left:8px;">是否阻塞：--</span>
               <span id="projectHeroDelayedTag" class="source-tag" style="margin-left:8px;">延期标记：--</span>
@@ -515,7 +513,8 @@
         document.getElementById('projectHeroUpdatedAt').textContent = '--';
         document.getElementById('projectHeroPhases').innerHTML = '<span class="phase-node">等待数据</span>';
         document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '当前阶段条（暂无数据）';
-        document.getElementById('projectHeroRefreshTag').textContent = '最近刷新：--';
+        document.getElementById('projectHeroRefreshInline').textContent = '--';
+        document.getElementById('projectHeroSourceInline').textContent = '本地真实数据文件';
         document.getElementById('projectHeroBlockedTag').textContent = '是否阻塞：--';
         document.getElementById('projectHeroDelayedTag').textContent = '延期标记：--';
         document.getElementById('projectHeroMilestoneTimeTag').textContent = '下一里程碑时间：--';
@@ -550,7 +549,8 @@
       document.getElementById('projectHeroNextMilestone').textContent = project.nextMilestone || project.milestone || '--';
       document.getElementById('projectHeroRiskFlag').textContent = project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险');
       document.getElementById('projectHeroUpdatedAt').textContent = project.updatedAt;
-      document.getElementById('projectHeroRefreshTag').textContent = `最近刷新：${project.updatedAt}`;
+      document.getElementById('projectHeroRefreshInline').textContent = project.updatedAt;
+      document.getElementById('projectHeroSourceInline').textContent = '本地真实数据文件';
       document.getElementById('projectHeroBlockedTag').textContent = `是否阻塞：${project.blocked ? '是' : '否'}`;
       document.getElementById('projectHeroBlockedTag').className = project.blocked ? 'warn-tag alert' : 'source-tag';
       document.getElementById('projectHeroDelayedTag').textContent = `延期标记：${project.delayed ? '有延期风险' : '无'}`;
@@ -626,6 +626,7 @@
       document.getElementById('heroTopProgressText').textContent = `当前进度：${data.featuredProject.progress}%`;
       document.getElementById('heroTopStageText').textContent = `当前卡点：${data.featuredProject.stage}`;
       document.getElementById('lastUpdatedText').textContent = data.lastUpdated;
+      document.getElementById('topMetaUpdated').textContent = data.lastUpdated;
       document.getElementById('refreshIntervalText').textContent = `${Math.floor(data.refreshIntervalMs / 1000)} 秒`;
       document.getElementById('metricTotal').textContent = data.summary.total;
       document.getElementById('metricProgress').textContent = data.summary.inProgress;
