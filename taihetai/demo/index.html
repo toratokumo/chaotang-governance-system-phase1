@@ -156,7 +156,7 @@
       <div class="topbar">
         <div>
           <div class="eyebrow">朝堂总览</div>
-          <h2 style="margin:6px 0 6px;">陛下可一眼查看项目做到哪一步</h2>
+          <h2 style="margin:6px 0 6px;">一眼看清项目进度</h2>
           <div id="heroStageBanner" class="warn-tag" style="margin-bottom:8px;">当前项目做到哪一步：--</div>
           <div style="margin-top:10px; display:flex; justify-content:flex-end;">
             <button id="toggleHeroSummaryBtn" type="button">收起项目总览区域</button>
@@ -169,8 +169,8 @@
             </div>
           </div>
           <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-            <button id="goProjectsBtn" type="button" class="hero-entry-btn action-btn-primary">查看全部项目与详细进度</button>
-            <button id="goLastViewedBtn" type="button" class="hero-entry-btn action-btn-primary" style="font-size:16px; font-weight:800; border:2px solid rgba(212,175,55,0.45);">立即返回最近查看项目</button>
+            <button id="goProjectsBtn" type="button" class="hero-entry-btn action-btn-primary">查看项目列表</button>
+            <button id="goLastViewedBtn" type="button" class="hero-entry-btn action-btn-primary" style="font-size:16px; font-weight:800; border:2px solid rgba(212,175,55,0.45);">立即返回最近项目</button>
                                   </div>
           <div class="kv" style="margin-top:16px;">
             <div class="cell"><div class="label">最近查看项目状态</div><div id="lastViewedStatusSummary" class="value">--</div></div>
@@ -196,7 +196,7 @@
         <div class="section-title">
           <div>
             <h3 style="margin:0 0 6px;">朝堂驾驶舱</h3>
-            <div class="muted">按“状态、卡点、下一步、风险”这一套朝堂驾驶舱语言收束展示。</div>
+            <div class="muted">聚焦最关键进度信号。</div>
           </div>
           <span class="warn-tag">朝堂驾驶舱</span>
         </div>
@@ -225,7 +225,7 @@
             <div class="cell hero-primary"><div class="label">最紧急项目当前卡点</div><div id="featuredTopBottleneck" class="value">--</div></div>
             <div class="cell hero-primary"><div class="label">最紧急项目下一步动作</div><div id="featuredTopNextAction" class="value">--</div></div>
           </div>
-              <div id="featuredGoal" class="muted">朝堂驾驶舱摘要：--</div>
+              <div id="featuredGoal" class="muted">摘要：--</div>
             </div>
             <span id="featuredStatus" class="pill doing">--</span>
           </div>
@@ -629,7 +629,7 @@
 
       const featured = data.featuredProject;
       document.getElementById('featuredName').textContent = `当前最紧急项目：${featured.name}`;
-      document.getElementById('featuredGoal').textContent = `朝堂驾驶舱摘要：负责人：${featured.owner} ｜ 最近更新：${data.lastUpdated} ｜ 下一里程碑：${featured.milestone} ｜ 风险：${featured.blocked ? '有阻塞风险' : '当前无明显风险'}`;
+      document.getElementById('featuredGoal').textContent = `摘要：负责人：${featured.owner} ｜ 最近更新：${data.lastUpdated} ｜ 下一里程碑：${featured.milestone} ｜ 风险：${featured.blocked ? '有阻塞风险' : '当前无明显风险'}`;
       const featuredStatus = document.getElementById('featuredStatus');
       featuredStatus.textContent = featured.status === 'done' ? '已完成' : featured.status === 'alert' ? '待推进' : '执行中';
       featuredStatus.className = `pill ${featured.status}`;
