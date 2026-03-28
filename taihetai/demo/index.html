@@ -51,7 +51,8 @@
     .nav a.active, .nav a:hover { background:var(--panel); border-color:var(--border); }
     .main { padding:32px; width:100%; }
     .page-shell { max-width: 1280px; margin: 0 auto; width: 100%; }
-    .topbar { display:grid; grid-template-columns:minmax(0,1fr) 220px; align-items:start; gap:20px; margin-bottom:24px; background:rgba(18,26,43,0.9); border:1px solid var(--border); border-radius:20px; padding:24px; }
+    .topbar { display:grid; grid-template-columns:minmax(0,1fr) 220px; align-items:start; gap:20px; margin-bottom:24px; background:rgba(18,26,43,0.9); border:1px solid var(--border); border-radius:20px; padding:24px; min-height: 240px; }
+    .title-block { min-height: 96px; display:flex; flex-direction:column; justify-content:flex-start; }
     .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
     .card, .panel { background:rgba(18,26,43,0.92); border:1px solid var(--border); border-radius:20px; padding:20px; box-shadow:var(--shadow); }
     .subtle-card { background:rgba(255,255,255,0.02); border-color:rgba(255,255,255,0.05); box-shadow:none; }
@@ -155,7 +156,7 @@
 
     <main class="main">
       <div class="topbar">
-        <div>
+        <div class="title-block">
           <div class="eyebrow">朝堂总览</div>
           <h2 style="margin:6px 0 6px;">一眼看清项目进度</h2>
           <div id="heroStageBanner" class="warn-tag" style="margin-bottom:8px;">当前项目做到哪一步：--</div>
@@ -267,7 +268,7 @@
 
       <section id="page-projects" class="page"><div class="page-shell">
         <div class="section-title">
-          <div>
+          <div class="title-block">
             <h3 style="margin:0 0 6px;">项目进度页</h3>
             <div class="muted">先筛选，再看当前节点、风险与下一步。</div>
           </div>
