@@ -179,12 +179,12 @@
             <div class="cell"><div class="label">最近查看项目风险</div><div id="lastViewedRiskSummary" class="value">--</div></div>
           </div>
           <div class="source-tag" style="margin-top:14px; font-weight:700; font-size:13px;">
-            最近更新时间：<span id="topMetaUpdated">--</span> ｜ 数据来源：<span id="dataSourceTag">本地真实数据文件</span>
+            更新：<span id="topMetaUpdated">--</span> ｜ 来源：<span id="dataSourceTag">本地真实数据文件</span>
           </div>
         </div>
         <div class="panel subtle-card" style="text-align:left; padding:16px;">
           <div class="muted">当前身份：陛下（演示）</div>
-          <div class="warn-tag" style="margin-top:6px;">最近更新时间：<span id="lastUpdatedText">--</span></div>
+          <div class="warn-tag" style="margin-top:6px;">更新：<span id="lastUpdatedText">--</span></div>
           <div class="muted">轮询间隔：<span id="refreshIntervalText">--</span></div>
           <button id="logoutBtn" class="action-btn-secondary" style="margin-top:12px; width:100%;">退出</button>
         </div>
@@ -272,16 +272,16 @@
           </div>
           <div>
             <span class="source-tag">本地真实数据文件</span>
-            <button id="backOverviewBtn" type="button" class="action-btn-primary" style="margin-left:8px;">返回首页总览</button>
+            <button id="backOverviewBtn" type="button" class="action-btn-primary" style="margin-left:8px;">返回首页</button>
           </div>
         </div>
         <div class="panel court-cockpit" style="margin-bottom:16px;">
           <div class="section-title">
             <div>
               <h3 style="margin:0 0 6px;">项目驾驶舱</h3>
-              <div class="muted">按“状态、卡点、下一步、风险”这一套朝堂驾驶舱语言集中查看单项目。</div>
+              <div class="muted">只看单项目核心信号。</div>
             </div>
-            <span class="warn-tag">朝堂项目驾驶舱</span>
+            <span class="warn-tag">项目驾驶舱</span>
           </div>
           <div class="kv hero-kv" style="margin-top:0;">
             <div class="cell hero-primary"><div class="label">状态总览</div><div id="projectCockpitStatus" class="value">--</div></div>
@@ -291,9 +291,9 @@
         </div>
         <div id="projectHeroPanel" class="panel" style="margin-bottom:16px;">
           <div class="section-title">
-            <h3 style="margin:0;">项目页首屏焦点</h3>
+            <h3 style="margin:0;">项目详情</h3>
             <div>
-              <span class="source-tag">最近更新时间：<span id="projectHeroRefreshInline">--</span> ｜ 数据来源：<span id="projectHeroSourceInline">本地真实数据文件</span></span>
+              <span class="source-tag">更新：<span id="projectHeroRefreshInline">--</span> ｜ 来源：<span id="projectHeroSourceInline">本地真实数据文件</span></span>
               <span id="projectHeroAlertTag" class="warn-tag" style="margin-left:8px;">拉取状态：正常</span>
               <span id="projectHeroBlockedTag" class="source-tag" style="margin-left:8px;">是否阻塞：--</span>
               <span id="projectHeroDelayedTag" class="source-tag" style="margin-left:8px;">延期标记：--</span>
@@ -312,17 +312,17 @@
           <div id="projectHeroMilestoneTimeBanner" class="bottleneck-banner">下一里程碑时间：--</div>
           <div id="projectHeroRiskBanner" class="bottleneck-banner">风险/延期：--</div>
           <div id="projectHeroProgressBanner" class="bottleneck-banner">当前进度：--</div>
-          <div id="projectHeroMetaBanner" class="bottleneck-banner">最近更新时间：-- ｜ 数据来源：--</div>
+          <div id="projectHeroMetaBanner" class="bottleneck-banner">更新：-- ｜ 来源：--</div>
           <div id="projectHeroRefreshAlertBanner" class="bottleneck-banner">刷新状态：正常</div>
           <div style="margin:16px 0; display:flex; gap:10px; flex-wrap:wrap;">
-            <button id="backToProjectListBtn" type="button" class="action-btn-primary">返回项目列表</button>
-            <button id="backHomeFromProjectBtn" type="button" class="action-btn-primary">返回首页总览</button>
+            <button id="backToProjectListBtn" type="button" class="action-btn-primary">返回列表</button>
+            <button id="backHomeFromProjectBtn" type="button" class="action-btn-primary">返回首页</button>
             <button id="prevProjectBtn" type="button" class="action-btn-secondary">上一项目</button>
             <button id="nextProjectBtn" type="button" class="action-btn-secondary">下一项目</button>
             <button id="copyProjectLinkBtn" type="button" class="action-btn-secondary">复制项目链接</button>
           </div>
           <div id="projectHeroPhaseBanner" class="hero-phase-strip subtle-card">
-            <div style="margin-bottom:8px; font-weight:700; color: var(--gold-2);">当前阶段条</div>
+            <div style="margin-bottom:8px; font-weight:700; color: var(--gold-2);">阶段条</div>
             <div id="projectHeroPhases" class="phase-strip"></div>
           </div>
           <div class="kv">
@@ -477,7 +477,7 @@
     function renderProjectHero(project) {
       if (!project) {
         document.getElementById('projectHeroName').textContent = '暂无项目数据';
-        document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无进度数据 ｜ 数据来源：朝堂驾驶舱暂无数据';
+        document.getElementById('projectHeroMetaBanner').textContent = '更新：暂无进度数据 ｜ 来源：朝堂驾驶舱暂无数据';
         document.getElementById('projectHeroMeta').textContent = '朝堂驾驶舱提示：当前暂无可展示的项目进度。';
         document.getElementById('projectHeroBottleneckBanner').textContent = '当前卡点：暂无进度数据';
         document.getElementById('projectHeroNextActionBanner').textContent = '下一步动作：暂无进度数据';
@@ -486,7 +486,7 @@
         document.getElementById('projectHeroMilestoneTimeBanner').textContent = '下一里程碑时间：暂无进度数据';
         document.getElementById('projectHeroRiskBanner').textContent = '风险总览：暂无进度数据';
         document.getElementById('projectHeroProgressBanner').textContent = '当前进度：暂无进度数据';
-        document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无进度数据 ｜ 数据来源：朝堂驾驶舱暂无数据';
+        document.getElementById('projectHeroMetaBanner').textContent = '更新：暂无进度数据 ｜ 来源：朝堂驾驶舱暂无数据';
         document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：朝堂驾驶舱暂无数据';
         document.getElementById('projectCockpitStatus').innerHTML = '--';
         document.getElementById('projectCockpitBottleneck').textContent = '--';
@@ -500,7 +500,7 @@
         document.getElementById('projectHeroRiskFlag').textContent = '暂无数据';
         document.getElementById('projectHeroUpdatedAt').textContent = '--';
         document.getElementById('projectHeroPhases').innerHTML = '<span class="phase-node">朝堂驾驶舱等待数据</span>';
-        document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '当前阶段条（暂无数据）';
+        document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '阶段条（暂无数据）';
         document.getElementById('projectHeroRefreshInline').textContent = '--';
         document.getElementById('projectHeroSourceInline').textContent = '本地真实数据文件';
         document.getElementById('projectHeroBlockedTag').textContent = '是否阻塞：--';
@@ -511,7 +511,7 @@
         document.getElementById('projectHeroNextActionTag').textContent = '下一步动作：--';
         return;
       }
-      document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '当前阶段条';
+      document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '阶段条';
       const currentList = getFilteredProjects(latestProjects);
       currentProjectIndex = Math.max(0, currentList.findIndex(item => item.name === project.name));
       localStorage.setItem('court-demo-last-project', project.name);
@@ -521,7 +521,7 @@
       document.getElementById('projectHeroBottleneckBanner').textContent = `当前卡点：${project.stage}`;
       document.getElementById('projectHeroNextActionBanner').textContent = `下一步动作：${project.nextAction}`;
       document.getElementById('projectHeroStatusBanner').textContent = `当前状态：${project.statusLabel}`;
-      document.getElementById('projectHeroMetaBanner').textContent = `最近更新时间：${project.updatedAt} ｜ 数据来源：本地真实数据文件`;
+      document.getElementById('projectHeroMetaBanner').textContent = `更新：${project.updatedAt} ｜ 来源：本地真实数据文件`;
       document.getElementById('projectCockpitStatus').innerHTML = `<span class="status-chip ${project.status === 'done' ? 'status-done' : project.status === 'alert' ? 'status-blocked' : 'status-doing'}">${project.status === 'done' ? '已完成' : project.status === 'alert' ? '阻塞/待推进' : '进行中'}</span>`;
       document.getElementById('projectCockpitBottleneck').textContent = project.stage;
       document.getElementById('projectCockpitNextAction').textContent = project.nextAction;
