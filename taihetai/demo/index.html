@@ -166,10 +166,6 @@
               <div class="cell hero-primary"><div class="label">下一步动作</div><div id="heroNextSummaryValue" class="value">--</div></div>
             </div>
           </div>
-          <div class="progress-wrap" style="margin-top:12px;">
-            <div class="progress-bar"><div id="heroTopProgressBar" class="progress-fill" style="width:0%"></div></div>
-            <div class="progress-meta"><span id="heroTopProgressText">当前进度：--</span><span id="heroTopStageText">当前卡点：--</span></div>
-          </div>
           <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
             <button id="goProjectsBtn" type="button" class="hero-entry-btn action-btn-primary">查看全部项目与详细进度</button>
             <button id="goLastViewedBtn" type="button" class="hero-entry-btn action-btn-primary" style="font-size:16px; font-weight:800; border:2px solid rgba(212,175,55,0.45);">立即返回最近查看项目</button>
@@ -618,11 +614,7 @@
       document.getElementById('heroBottleneckValue').textContent = data.featuredProject.stage;
       document.getElementById('heroNextSummaryValue').textContent = data.featuredProject.nextAction;
       document.getElementById('heroStatusSummaryValue').textContent = data.featuredProject.status === 'done' ? '已完成' : data.featuredProject.status === 'alert' ? (data.featuredProject.blocked ? '阻塞中' : '待处理') : '进行中';
-      document.getElementById('heroTopProgressBar').style.width = `${data.featuredProject.progress}%`;
-      document.getElementById('heroTopProgressText').textContent = `当前进度：${data.featuredProject.progress}%`;
-      document.getElementById('heroTopStageText').textContent = `当前卡点：${data.featuredProject.stage}`;
       document.getElementById('lastUpdatedText').textContent = data.lastUpdated;
-      document.getElementById('topMetaUpdated').textContent = data.lastUpdated;
       document.getElementById('refreshIntervalText').textContent = `${Math.floor(data.refreshIntervalMs / 1000)} 秒`;
       document.getElementById('metricTotal').textContent = data.summary.total;
       document.getElementById('metricProgress').textContent = data.summary.inProgress;
