@@ -277,6 +277,26 @@
             <button id="backOverviewBtn" type="button" style="margin-left:8px;">返回首页总览</button>
           </div>
         </div>
+        <div class="panel" style="margin-bottom:16px;">
+          <div class="section-title">
+            <div>
+              <h3 style="margin:0 0 6px;">项目驾驶舱</h3>
+              <div class="muted">按“状态 → 卡点 → 下一步 → 风险”集中查看单项目。</div>
+            </div>
+            <span class="source-tag">项目看板</span>
+          </div>
+          <div class="kv hero-kv" style="margin-top:0;">
+            <div class="cell hero-primary"><div class="label">项目状态</div><div id="projectCockpitStatus" class="value">--</div></div>
+            <div class="cell hero-primary"><div class="label">当前卡点</div><div id="projectCockpitBottleneck" class="value">--</div></div>
+            <div class="cell hero-primary"><div class="label">下一步动作</div><div id="projectCockpitNextAction" class="value">--</div></div>
+          </div>
+          <div class="kv" style="margin-top:10px;">
+            <div class="cell"><div class="label">风险/延期</div><div id="projectCockpitRisk" class="value">--</div></div>
+            <div class="cell"><div class="label">负责人</div><div id="projectCockpitOwner" class="value">--</div></div>
+            <div class="cell"><div class="label">下一里程碑</div><div id="projectCockpitMilestone" class="value">--</div></div>
+            <div class="cell"><div class="label">最近刷新</div><div id="projectCockpitRefresh" class="value">--</div></div>
+          </div>
+        </div>
         <div id="projectHeroPanel" class="panel" style="margin-bottom:16px;">
           <div class="section-title">
             <h3 style="margin:0;">项目页首屏焦点</h3>
@@ -478,6 +498,13 @@
         document.getElementById('projectHeroProgressBanner').textContent = '当前进度：暂无数据';
         document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无数据 ｜ 数据来源：暂无数据';
         document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：暂无数据';
+        document.getElementById('projectCockpitStatus').textContent = '--';
+        document.getElementById('projectCockpitBottleneck').textContent = '--';
+        document.getElementById('projectCockpitNextAction').textContent = '--';
+        document.getElementById('projectCockpitRisk').textContent = '--';
+        document.getElementById('projectCockpitOwner').textContent = '--';
+        document.getElementById('projectCockpitMilestone').textContent = '--';
+        document.getElementById('projectCockpitRefresh').textContent = '--';
         document.getElementById('projectHeroCurrentNode').textContent = '--';
         document.getElementById('projectHeroNextMilestone').textContent = '--';
         document.getElementById('projectHeroRiskFlag').textContent = '暂无数据';
@@ -508,6 +535,13 @@
       document.getElementById('projectHeroRiskBanner').textContent = `风险/延期：${project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险')}`;
       document.getElementById('projectHeroProgressBanner').textContent = `当前进度：${project.progress}%`;
       document.getElementById('projectHeroMetaBanner').textContent = `最近更新时间：${project.updatedAt} ｜ 数据来源：本地真实数据文件`;
+      document.getElementById('projectCockpitStatus').textContent = project.statusLabel;
+      document.getElementById('projectCockpitBottleneck').textContent = project.stage;
+      document.getElementById('projectCockpitNextAction').textContent = project.nextAction;
+      document.getElementById('projectCockpitRisk').textContent = project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险');
+      document.getElementById('projectCockpitOwner').textContent = project.owner;
+      document.getElementById('projectCockpitMilestone').textContent = project.nextMilestone || project.milestone || '--';
+      document.getElementById('projectCockpitRefresh').textContent = project.updatedAt;
       document.getElementById('projectHeroCurrentNode').textContent = project.phaseFlow?.[project.currentPhaseIndex] || project.stage;
       document.getElementById('projectHeroNextMilestone').textContent = project.nextMilestone || project.milestone || '--';
       document.getElementById('projectHeroRiskFlag').textContent = project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险');
