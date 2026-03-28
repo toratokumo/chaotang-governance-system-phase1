@@ -40,7 +40,7 @@
     label { font-size:14px; color:var(--muted); }
     input { width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:var(--panel-2); color:var(--text); outline:none; }
     button { padding:12px 16px; border:none; border-radius:12px; cursor:pointer; background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#201700; font-weight:700; }
-    .hero-entry-btn { margin-top: 14px; padding: 14px 18px; font-size: 15px; box-shadow: var(--shadow); }
+    .hero-entry-btn { margin-top: 10px; padding: 12px 16px; font-size: 14px; box-shadow: var(--shadow); }
     .action-btn-primary { background:linear-gradient(135deg, var(--gold), var(--gold-2)); color:#201700; font-weight:800; }
     .action-btn-secondary { background:rgba(255,255,255,0.06); color:var(--text); border:1px solid var(--border); font-weight:700; }
     .hint { font-size:13px; color:var(--muted); }
@@ -49,10 +49,10 @@
     .brand { font-size:20px; font-weight:800; margin-bottom:6px; }
     .nav a { display:block; padding:12px 14px; margin:8px 0; color:var(--text); text-decoration:none; border-radius:12px; background:transparent; border:1px solid transparent; }
     .nav a.active, .nav a:hover { background:var(--panel); border-color:var(--border); }
-    .main { padding:24px; }
-    .topbar { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:20px; background:rgba(18,26,43,0.9); border:1px solid var(--border); border-radius:18px; padding:18px 20px; }
-    .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px; }
-    .card, .panel { background:rgba(18,26,43,0.92); border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow:var(--shadow); }
+    .main { padding:32px; max-width: 1440px; margin: 0 auto; width: 100%; }
+    .topbar { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; margin-bottom:24px; background:rgba(18,26,43,0.9); border:1px solid var(--border); border-radius:20px; padding:24px; }
+    .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+    .card, .panel { background:rgba(18,26,43,0.92); border:1px solid var(--border); border-radius:20px; padding:20px; box-shadow:var(--shadow); }
     .metric { font-size:30px; font-weight:800; margin:8px 0 0; }
     .grid-2 { display:grid; grid-template-columns:1.3fr 1fr; gap:16px; }
     .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -85,16 +85,16 @@
     .project-item { padding:16px; border:1px solid var(--border); border-radius:16px; background:rgba(255,255,255,0.02); }
     .project-item-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:10px; }
     .detail-entry-btn { margin-top: 12px; }
-    .kv { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:10px; }
+    .kv { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:12px; }
     .hero-kv { grid-template-columns:repeat(3, 1fr); margin-top:12px; }
     .hero-kv .cell { border-color: rgba(212,175,55,0.18); }
     .hero-primary .label { color: var(--gold-2); }
     .hero-primary .value { font-size:16px; font-weight:700; }
     .status-chip { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; }
-    .kv .cell { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:10px; }
+    .kv .cell { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:14px; padding:12px; }
     .cell .label { font-size:12px; color:var(--muted); margin-bottom:6px; }
     .cell .value { font-size:14px; }
-    .error-box { margin-top:12px; padding:10px 12px; border-radius:12px; background:rgba(255,107,107,0.12); color:var(--danger); border:1px solid rgba(255,107,107,0.24); font-weight:700; }
+    .error-box { margin-top:16px; padding:12px 14px; border-radius:14px; background:rgba(255,107,107,0.12); color:var(--danger); border:1px solid rgba(255,107,107,0.24); font-weight:700; }
     .phase-strip { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 4px; }
     .hero-phase-strip { margin: 0 0 12px; padding: 10px; border-radius: 14px; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.18); }
     .phase-node { padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.03); color:var(--muted); font-size:12px; }
@@ -170,23 +170,17 @@
             <div class="progress-bar"><div id="heroTopProgressBar" class="progress-fill" style="width:0%"></div></div>
             <div class="progress-meta"><span id="heroTopProgressText">当前进度：--</span><span id="heroTopStageText">当前卡点：--</span></div>
           </div>
-          <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
             <button id="goProjectsBtn" type="button" class="hero-entry-btn action-btn-primary">查看全部项目与详细进度</button>
             <button id="goLastViewedBtn" type="button" class="hero-entry-btn action-btn-primary" style="font-size:16px; font-weight:800; border:2px solid rgba(212,175,55,0.45);">立即返回最近查看项目</button>
-            <div id="lastViewedStatusSummary" class="source-tag" style="align-self:center;">最近查看项目状态：--</div>
-            <div id="lastViewedBottleneckSummary" class="source-tag" style="align-self:center;">最近查看项目卡点：--</div>
-            <div id="lastViewedNextActionSummary" class="source-tag" style="align-self:center;">最近查看项目下一步：--</div>
-            <div id="lastViewedOwnerSummary" class="source-tag" style="align-self:center;">最近查看项目负责人：--</div>
-            <div id="lastViewedMilestoneSummary" class="source-tag" style="align-self:center;">最近查看项目里程碑时间：--</div>
-            <div id="lastViewedRiskSummary" class="source-tag" style="align-self:center;">最近查看项目风险/延期：--</div>
-            <button id="goHighRiskBtn" type="button" class="hero-entry-btn action-btn-secondary">查看高风险项目</button>
-            <button id="goBlockedBtn" type="button" class="hero-entry-btn action-btn-secondary">查看阻塞项目</button>
-            <button id="goDelayedBtn" type="button" class="hero-entry-btn action-btn-secondary">查看延期项目</button>
-            <button id="goRecentBtn" type="button" class="hero-entry-btn action-btn-secondary">查看最近更新项目</button>
-            <button id="goPendingBtn" type="button" class="hero-entry-btn action-btn-secondary">查看待处理项目</button>
-            <button id="goDoneBtn" type="button" class="hero-entry-btn action-btn-secondary">查看已完成项目</button>
+                                  </div>
+          <div class="kv" style="margin-top:16px;">
+            <div class="cell"><div class="label">最近查看项目状态</div><div id="lastViewedStatusSummary" class="value">--</div></div>
+            <div class="cell"><div class="label">最近查看项目卡点</div><div id="lastViewedBottleneckSummary" class="value">--</div></div>
+            <div class="cell"><div class="label">最近查看项目下一步</div><div id="lastViewedNextActionSummary" class="value">--</div></div>
+            <div class="cell"><div class="label">最近查看项目风险</div><div id="lastViewedRiskSummary" class="value">--</div></div>
           </div>
-          <div class="source-tag" style="margin-top:10px; font-weight:700; font-size:13px;">
+          <div class="source-tag" style="margin-top:14px; font-weight:700; font-size:13px;">
             最近更新时间：<span id="topMetaUpdated">--</span> ｜ 数据来源：<span id="dataSourceTag">本地真实数据文件</span>
           </div>
         </div>
@@ -328,7 +322,7 @@
           <div id="projectHeroProgressBanner" class="bottleneck-banner">当前进度：--</div>
           <div id="projectHeroMetaBanner" class="bottleneck-banner">最近更新时间：-- ｜ 数据来源：--</div>
           <div id="projectHeroRefreshAlertBanner" class="bottleneck-banner">刷新状态：正常</div>
-          <div style="margin:10px 0; display:flex; gap:8px; flex-wrap:wrap;">
+          <div style="margin:16px 0; display:flex; gap:10px; flex-wrap:wrap;">
             <button id="backToProjectListBtn" type="button" class="action-btn-primary">返回项目列表</button>
             <button id="backHomeFromProjectBtn" type="button" class="action-btn-primary">返回首页总览</button>
             <button id="prevProjectBtn" type="button" class="action-btn-secondary">上一项目</button>
