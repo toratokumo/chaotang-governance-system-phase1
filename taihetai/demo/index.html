@@ -288,12 +288,6 @@
             <div class="cell hero-primary"><div class="label">当前卡点</div><div id="projectCockpitBottleneck" class="value">--</div></div>
             <div class="cell hero-primary"><div class="label">下一步动作</div><div id="projectCockpitNextAction" class="value">--</div></div>
           </div>
-          <div class="kv" style="margin-top:10px;">
-            <div class="cell"><div class="label">风险总览</div><div id="projectCockpitRisk" class="value">--</div></div>
-            <div class="cell"><div class="label">负责人</div><div id="projectCockpitOwner" class="value">--</div></div>
-            <div class="cell"><div class="label">下一里程碑</div><div id="projectCockpitMilestone" class="value">--</div></div>
-            <div class="cell"><div class="label">最近刷新</div><div id="projectCockpitRefresh" class="value">--</div></div>
-          </div>
         </div>
         <div id="projectHeroPanel" class="panel" style="margin-bottom:16px;">
           <div class="section-title">
@@ -527,18 +521,10 @@
       document.getElementById('projectHeroBottleneckBanner').textContent = `当前卡点：${project.stage}`;
       document.getElementById('projectHeroNextActionBanner').textContent = `下一步动作：${project.nextAction}`;
       document.getElementById('projectHeroStatusBanner').textContent = `当前状态：${project.statusLabel}`;
-      document.getElementById('projectHeroOwnerBanner').textContent = `负责人：${project.owner}`;
-      document.getElementById('projectHeroMilestoneTimeBanner').textContent = `下一里程碑时间：${project.nextMilestoneTime || '待定'}`;
-      document.getElementById('projectHeroRiskBanner').textContent = `风险/延期：${project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险')}`;
-      document.getElementById('projectHeroProgressBanner').textContent = `当前进度：${project.progress}%`;
       document.getElementById('projectHeroMetaBanner').textContent = `最近更新时间：${project.updatedAt} ｜ 数据来源：本地真实数据文件`;
       document.getElementById('projectCockpitStatus').innerHTML = `<span class="status-chip ${project.status === 'done' ? 'status-done' : project.status === 'alert' ? 'status-blocked' : 'status-doing'}">${project.status === 'done' ? '已完成' : project.status === 'alert' ? '阻塞/待推进' : '进行中'}</span>`;
       document.getElementById('projectCockpitBottleneck').textContent = project.stage;
       document.getElementById('projectCockpitNextAction').textContent = project.nextAction;
-      document.getElementById('projectCockpitRisk').innerHTML = project.delayed ? '<span class="status-chip status-delayed">延期</span>' : (project.blocked ? '<span class="status-chip status-blocked">阻塞</span>' : '<span class="status-chip status-done">正常</span>');
-      document.getElementById('projectCockpitOwner').textContent = project.owner;
-      document.getElementById('projectCockpitMilestone').textContent = project.nextMilestone || project.milestone || '--';
-      document.getElementById('projectCockpitRefresh').textContent = project.updatedAt;
       document.getElementById('projectHeroCurrentNode').textContent = project.phaseFlow?.[project.currentPhaseIndex] || project.stage;
       document.getElementById('projectHeroNextMilestone').textContent = project.nextMilestone || project.milestone || '--';
       document.getElementById('projectHeroRiskFlag').textContent = project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险');
