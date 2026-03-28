@@ -57,10 +57,10 @@
     table { width:100%; border-collapse:collapse; }
     th, td { text-align:left; padding:12px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
     .status, .pill { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; }
-    .doing { background:rgba(81,196,211,0.12); color:var(--cyan); }
-    .done { background:rgba(110,231,168,0.12); color:var(--ok); }
-    .alert { background:rgba(255,107,107,0.12); color:var(--danger); }
-    .warn { background:rgba(255,184,107,0.12); color:var(--warn); }
+    .doing, .status-doing { background:rgba(81,196,211,0.12); color:var(--cyan); }
+    .done, .status-done { background:rgba(110,231,168,0.12); color:var(--ok); }
+    .alert, .status-blocked { background:rgba(255,107,107,0.12); color:var(--danger); }
+    .warn, .status-delayed { background:rgba(255,184,107,0.12); color:var(--warn); }
     .progress-wrap { margin-top:8px; }
     .progress-bar { height:10px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden; }
     .progress-fill { height:100%; background:linear-gradient(90deg, var(--gold), var(--gold-2)); border-radius:999px; }
@@ -88,6 +88,7 @@
     .hero-kv .cell { border-color: rgba(212,175,55,0.18); }
     .hero-primary .label { color: var(--gold-2); }
     .hero-primary .value { font-size:16px; font-weight:700; }
+    .status-chip { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; }
     .kv .cell { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:10px; }
     .cell .label { font-size:12px; color:var(--muted); margin-bottom:6px; }
     .cell .value { font-size:14px; }
@@ -501,10 +502,10 @@
         document.getElementById('projectHeroProgressBanner').textContent = '当前进度：暂无数据';
         document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无数据 ｜ 数据来源：暂无数据';
         document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：暂无数据';
-        document.getElementById('projectCockpitStatus').textContent = '--';
+        document.getElementById('projectCockpitStatus').innerHTML = '--';
         document.getElementById('projectCockpitBottleneck').textContent = '--';
         document.getElementById('projectCockpitNextAction').textContent = '--';
-        document.getElementById('projectCockpitRisk').textContent = '--';
+        document.getElementById('projectCockpitRisk').innerHTML = '--';
         document.getElementById('projectCockpitOwner').textContent = '--';
         document.getElementById('projectCockpitMilestone').textContent = '--';
         document.getElementById('projectCockpitRefresh').textContent = '--';
@@ -538,10 +539,10 @@
       document.getElementById('projectHeroRiskBanner').textContent = `风险/延期：${project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险')}`;
       document.getElementById('projectHeroProgressBanner').textContent = `当前进度：${project.progress}%`;
       document.getElementById('projectHeroMetaBanner').textContent = `最近更新时间：${project.updatedAt} ｜ 数据来源：本地真实数据文件`;
-      document.getElementById('projectCockpitStatus').textContent = project.statusLabel;
+      document.getElementById('projectCockpitStatus').innerHTML = `<span class="status-chip ${project.status === 'done' ? 'status-done' : project.status === 'alert' ? 'status-blocked' : 'status-doing'}">${project.status === 'done' ? '已完成' : project.status === 'alert' ? '阻塞/待推进' : '进行中'}</span>`;
       document.getElementById('projectCockpitBottleneck').textContent = project.stage;
       document.getElementById('projectCockpitNextAction').textContent = project.nextAction;
-      document.getElementById('projectCockpitRisk').textContent = project.delayed ? '有延期风险' : (project.blocked ? '有阻塞风险' : '当前无明显风险');
+      document.getElementById('projectCockpitRisk').innerHTML = project.delayed ? '<span class="status-chip status-delayed">延期</span>' : (project.blocked ? '<span class="status-chip status-blocked">阻塞</span>' : '<span class="status-chip status-done">正常</span>');
       document.getElementById('projectCockpitOwner').textContent = project.owner;
       document.getElementById('projectCockpitMilestone').textContent = project.nextMilestone || project.milestone || '--';
       document.getElementById('projectCockpitRefresh').textContent = project.updatedAt;
@@ -642,7 +643,7 @@
       featuredStatus.textContent = featured.status === 'done' ? '已完成' : featured.status === 'alert' ? '待推进' : '执行中';
       featuredStatus.className = `pill ${featured.status}`;
       document.getElementById('featuredStage').textContent = featured.stage;
-      document.getElementById('featuredTopStatus').textContent = featured.status === 'done' ? '已完成' : featured.status === 'alert' ? '待推进' : '进行中';
+      document.getElementById('featuredTopStatus').innerHTML = `<span class="status-chip ${featured.status === 'done' ? 'status-done' : featured.status === 'alert' ? 'status-blocked' : 'status-doing'}">${featured.status === 'done' ? '已完成' : featured.status === 'alert' ? '阻塞/待推进' : '进行中'}</span>`;
       document.getElementById('featuredTopBottleneck').textContent = featured.stage;
       document.getElementById('featuredTopNextAction').textContent = featured.nextAction;
       document.getElementById('featuredOwner').textContent = featured.owner;
