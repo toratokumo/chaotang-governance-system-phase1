@@ -198,7 +198,7 @@
         </div>
       </div>
 
-      <div id="refreshError" class="error-box hidden">刷新异常：数据拉取失败，当前总览可能不是最新状态。</div>
+      <div id="refreshError" class="error-box hidden">朝堂驾驶舱提示：刷新异常，当前所见未必为最新进度。</div>
 
       <div class="panel court-cockpit" style="margin-bottom:20px;">
         <div class="section-title">
@@ -377,8 +377,8 @@
         </div>
         <div class="panel" style="margin-top:16px;">
           <h3>国库页</h3>
-          <p class="muted">此页仍为演示区，后续将接入预算、消耗、趋势与项目资源统计。</p>
-          <span class="warn-tag">当前未接真实国库数据</span>
+          <p class="muted">朝堂驾驶舱提示：此页仍为占位演示，后续再接入预算、消耗、趋势与资源统计。</p>
+          <span class="warn-tag">朝堂驾驶舱提示：当前未接真实国库数据</span>
         </div>
       </section>
 
@@ -491,17 +491,17 @@
     function renderProjectHero(project) {
       if (!project) {
         document.getElementById('projectHeroName').textContent = '暂无项目数据';
-        document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无数据 ｜ 数据来源：暂无数据';
-        document.getElementById('projectHeroMeta').textContent = '当前暂无可展示的项目进度数据。';
-        document.getElementById('projectHeroBottleneckBanner').textContent = '当前卡点：暂无数据';
-        document.getElementById('projectHeroNextActionBanner').textContent = '下一步动作：暂无数据';
-        document.getElementById('projectHeroStatusBanner').textContent = '当前状态：暂无数据';
-        document.getElementById('projectHeroOwnerBanner').textContent = '负责人：暂无数据';
-        document.getElementById('projectHeroMilestoneTimeBanner').textContent = '下一里程碑时间：暂无数据';
-        document.getElementById('projectHeroRiskBanner').textContent = '风险/延期：暂无数据';
-        document.getElementById('projectHeroProgressBanner').textContent = '当前进度：暂无数据';
-        document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无数据 ｜ 数据来源：暂无数据';
-        document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：暂无数据';
+        document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无进度数据 ｜ 数据来源：朝堂驾驶舱暂无数据';
+        document.getElementById('projectHeroMeta').textContent = '朝堂驾驶舱提示：当前暂无可展示的项目进度。';
+        document.getElementById('projectHeroBottleneckBanner').textContent = '当前卡点：暂无进度数据';
+        document.getElementById('projectHeroNextActionBanner').textContent = '下一步动作：暂无进度数据';
+        document.getElementById('projectHeroStatusBanner').textContent = '当前状态：暂无进度数据';
+        document.getElementById('projectHeroOwnerBanner').textContent = '负责人：暂无进度数据';
+        document.getElementById('projectHeroMilestoneTimeBanner').textContent = '下一里程碑时间：暂无进度数据';
+        document.getElementById('projectHeroRiskBanner').textContent = '风险总览：暂无进度数据';
+        document.getElementById('projectHeroProgressBanner').textContent = '当前进度：暂无进度数据';
+        document.getElementById('projectHeroMetaBanner').textContent = '最近更新时间：暂无进度数据 ｜ 数据来源：朝堂驾驶舱暂无数据';
+        document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：朝堂驾驶舱暂无数据';
         document.getElementById('projectCockpitStatus').innerHTML = '--';
         document.getElementById('projectCockpitBottleneck').textContent = '--';
         document.getElementById('projectCockpitNextAction').textContent = '--';
@@ -513,7 +513,7 @@
         document.getElementById('projectHeroNextMilestone').textContent = '--';
         document.getElementById('projectHeroRiskFlag').textContent = '暂无数据';
         document.getElementById('projectHeroUpdatedAt').textContent = '--';
-        document.getElementById('projectHeroPhases').innerHTML = '<span class="phase-node">等待数据</span>';
+        document.getElementById('projectHeroPhases').innerHTML = '<span class="phase-node">朝堂驾驶舱等待数据</span>';
         document.getElementById('projectHeroPhaseBanner').querySelector('div').textContent = '当前阶段条（暂无数据）';
         document.getElementById('projectHeroRefreshInline').textContent = '--';
         document.getElementById('projectHeroSourceInline').textContent = '本地真实数据文件';
@@ -572,12 +572,12 @@
       let filteredProjects = getFilteredProjects(latestProjects);
       if (!filteredProjects || filteredProjects.length === 0) {
         renderProjectHero(latestProjects[0] || null);
-        document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">当前筛选下暂无项目，请切换筛选条件。</div></div>';
+        document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">朝堂驾驶舱提示：当前筛选下暂无项目，请切换条件后再看。</div></div>';
         return;
       }
       if (!projects || projects.length === 0) {
         renderProjectHero(null);
-        document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">暂无项目数据，请稍后刷新或检查数据源。</div></div>';
+        document.getElementById('projectList').innerHTML = '<div class="panel"><div class="muted">朝堂驾驶舱提示：暂无项目数据，请稍后刷新或检查数据来源。</div></div>';
         return;
       }
       renderProjectHero(filteredProjects[0]);
