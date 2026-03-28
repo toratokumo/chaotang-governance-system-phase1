@@ -319,9 +319,9 @@
           </div>
           <div id="projectHeroName" style="font-size:20px; font-weight:700; margin-bottom:6px;">--</div>
           <div id="projectHeroMeta" class="muted">--</div>
+          <div id="projectHeroStatusBanner" class="bottleneck-banner">当前状态：--</div>
           <div id="projectHeroBottleneckBanner" class="bottleneck-banner">当前卡点：--</div>
           <div id="projectHeroNextActionBanner" class="bottleneck-banner">下一步动作：--</div>
-          <div id="projectHeroStatusBanner" class="bottleneck-banner">当前状态：--</div>
           <div id="projectHeroOwnerBanner" class="bottleneck-banner">负责人：--</div>
           <div id="projectHeroMilestoneTimeBanner" class="bottleneck-banner">下一里程碑时间：--</div>
           <div id="projectHeroRiskBanner" class="bottleneck-banner">风险/延期：--</div>
@@ -594,10 +594,10 @@
           <div class="progress-bar"><div class="progress-fill" style="width:${project.progress}%"></div></div>
           <div class="progress-meta"><span>完成度 ${project.progress}%</span><span>最近更新：${project.updatedAt}</span></div>
           <div class="kv">
+            <div class="cell"><div class="label">当前状态</div><div class="value">${project.statusLabel}</div></div>
+            <div class="cell"><div class="label">当前卡点</div><div class="value">${project.stage}</div></div>
             <div class="cell"><div class="label">下一步动作</div><div class="value">${project.nextAction}</div></div>
-            <div class="cell"><div class="label">最近更新</div><div class="value">${project.latestUpdate}</div></div>
             <div class="cell"><div class="label">下一里程碑</div><div class="value">${project.nextMilestone || project.milestone}</div></div>
-            <div class="cell"><div class="label">风险等级</div><div class="value">${project.riskLevelLabel || "未标记"}</div></div>
             <div class="cell"><div class="label">风险提示</div><div class="value">${project.delayed ? '有延期风险；' : ''}${project.risk}</div></div>
             <div style="grid-column: 1 / -1;"><div class="phase-strip">${(project.phaseFlow || []).map((phase, index) => `<span class="${index < project.currentPhaseIndex ? 'phase-node done' : index === project.currentPhaseIndex ? 'phase-node current' : 'phase-node'}">${phase}</span>`).join('')}</div></div>
           </div>
