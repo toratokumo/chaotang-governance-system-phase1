@@ -194,6 +194,22 @@
 
       <div id="refreshError" class="error-box hidden">刷新异常：数据拉取失败，当前总览可能不是最新状态。</div>
 
+      <div class="panel" style="margin-bottom:20px;">
+        <div class="section-title">
+          <div>
+            <h3 style="margin:0 0 6px;">朝堂驾驶舱</h3>
+            <div class="muted">按“系统状态 → 当前最急 → 风险总览 → 待处理”收束展示。</div>
+          </div>
+          <span class="source-tag">数据驱动看板</span>
+        </div>
+        <div class="kv">
+          <div class="cell"><div class="label">系统状态</div><div id="cockpitFetchStatus" class="value">--</div></div>
+          <div class="cell"><div class="label">当前最急</div><div id="cockpitUrgentProject" class="value">--</div></div>
+          <div class="cell"><div class="label">风险总览</div><div id="cockpitRiskSummary" class="value">--</div></div>
+          <div class="cell"><div class="label">待处理/已完成</div><div id="cockpitPendingSummary" class="value">--</div></div>
+        </div>
+      </div>
+
       <section id="page-overview" class="page active">
         <div class="cards">
           <div class="card"><div class="muted">项目总数</div><div id="metricTotal" class="metric">--</div></div>
@@ -577,6 +593,10 @@
       document.getElementById('metricProgress').textContent = data.summary.inProgress;
       document.getElementById('metricDone').textContent = data.summary.done;
       document.getElementById('metricBlocked').textContent = data.summary.blocked;
+      document.getElementById('cockpitFetchStatus').textContent = `数据正常｜${data.lastUpdated}`;
+      document.getElementById('cockpitUrgentProject').textContent = `${data.featuredProject.name}｜${data.featuredProject.nextAction}`;
+      document.getElementById('cockpitRiskSummary').textContent = `${data.summary.blocked} 个阻塞｜${data.summary.delayed || 0} 个延期｜${data.alerts.length} 条告警`;
+      document.getElementById('cockpitPendingSummary').textContent = `${data.summary.pending || 0} 个待处理｜${data.summary.done} 个已完成`;
 
       const featured = data.featuredProject;
       document.getElementById('featuredName').textContent = `当前最紧急项目：${featured.name}`;
@@ -619,6 +639,7 @@
         const data = await response.json();
         renderData(data);
         refreshError.classList.add('hidden');
+        document.getElementById('cockpitFetchStatus').textContent = `数据正常｜${data.lastUpdated}`;
         document.getElementById('projectHeroAlertTag').textContent = '拉取状态：正常';
         document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：正常';
         document.getElementById('projectHeroAlertTag').className = 'warn-tag';
@@ -626,6 +647,7 @@
         refreshTimer = setTimeout(loadData, data.refreshIntervalMs || 15000);
       } catch (error) {
         refreshError.classList.remove('hidden');
+        document.getElementById('cockpitFetchStatus').textContent = '数据异常｜请检查刷新链路';
         document.getElementById('projectHeroAlertTag').textContent = '拉取状态：失败';
         document.getElementById('projectHeroRefreshAlertBanner').textContent = '刷新状态：异常';
         document.getElementById('projectHeroAlertTag').className = 'warn-tag alert';
