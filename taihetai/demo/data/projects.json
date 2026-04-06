@@ -1,6 +1,6 @@
 {
   "source": "本地真实数据文件",
-  "lastUpdated": "2026-03-27 17:58",
+  "lastUpdated": "2026-04-06 09:07",
   "refreshIntervalMs": 15000,
   "summary": {
     "total": 4,
@@ -24,18 +24,18 @@
   "projects": [
     {
       "name": "朝堂治理系统一期 Demo",
-      "stage": "真实数据接入",
+      "stage": "首页与项目页统一收口",
       "status": "doing",
       "statusLabel": "进行中",
       "owner": "尚书省",
       "blocked": false,
       "blockedLabel": "无",
-      "updatedAt": "2026-03-27 17:58",
-      "progress": 78,
-      "nextAction": "补定时轮询刷新并重新部署",
-      "latestUpdate": "已接入本地真实数据文件，正在补自动轮询。",
+      "updatedAt": "2026-04-06 09:07",
+      "progress": 88,
+      "nextAction": "补齐最新进度数据并继续验收",
+      "latestUpdate": "已完成首页与项目页的系统化收口，并清理仓库上层删除尾账。",
       "milestone": "准实时版本上线",
-      "risk": "当前无硬阻塞，重点在刷新链路稳定。",
+      "risk": "当前无硬阻塞，重点在持续保持数据与界面同步。",
       "phaseFlow": [
         "立项",
         "方案",
@@ -44,27 +44,27 @@
         "验收"
       ],
       "currentPhaseIndex": 3,
-      "nextMilestone": "进入验收展示准备",
+      "nextMilestone": "补齐最新进度数据并进入复核",
       "delayed": false,
-      "nextMilestoneTime": "2026-03-27 19:30",
+      "nextMilestoneTime": "2026-04-06 11:00",
       "riskLevel": "low",
       "riskLevelLabel": "低风险",
       "urgent": false
     },
     {
       "name": "项目进度可视化急件",
-      "stage": "自动轮询刷新",
+      "stage": "界面统一与数据续更",
       "status": "doing",
       "statusLabel": "进行中",
       "owner": "尚书省",
       "blocked": false,
       "blockedLabel": "无",
-      "updatedAt": "2026-03-27 17:58",
-      "progress": 82,
-      "nextAction": "完成轮询与刷新时间展示",
-      "latestUpdate": "已从静态 mock 页面转向数据文件驱动。",
+      "updatedAt": "2026-04-06 09:07",
+      "progress": 90,
+      "nextAction": "继续补齐最新任务进度并准备复核",
+      "latestUpdate": "首页与项目页已统一到同一套 dashboard 语言。",
       "milestone": "可自动刷新显示最新进度",
-      "risk": "需防止拉取失败时静默失真。",
+      "risk": "当前主要风险在进度数据若不及时续更，展示会滞后。",
       "phaseFlow": [
         "立项",
         "方案",
@@ -73,9 +73,9 @@
         "验收"
       ],
       "currentPhaseIndex": 3,
-      "nextMilestone": "首屏进度展示进一步细化",
+      "nextMilestone": "完成本轮数据续更后复核",
       "delayed": false,
-      "nextMilestoneTime": "2026-03-27 19:00",
+      "nextMilestoneTime": "2026-04-06 10:30",
       "riskLevel": "low",
       "riskLevelLabel": "低风险",
       "urgent": true
@@ -88,7 +88,7 @@
       "owner": "门下省",
       "blocked": false,
       "blockedLabel": "无",
-      "updatedAt": "2026-03-27 12:00",
+      "updatedAt": "2026-04-06 09:07",
       "progress": 100,
       "nextAction": "留档备查",
       "latestUpdate": "准实时方案边界已审定。",
@@ -104,7 +104,7 @@
       "currentPhaseIndex": 4,
       "nextMilestone": "归档备查",
       "delayed": false,
-      "nextMilestoneTime": "2026-03-28 10:00",
+      "nextMilestoneTime": "2026-04-06 12:00",
       "riskLevel": "low",
       "riskLevelLabel": "低风险",
       "urgent": false
@@ -117,12 +117,12 @@
       "owner": "户部 / 尚书省",
       "blocked": true,
       "blockedLabel": "有",
-      "updatedAt": "2026-03-27 11:30",
+      "updatedAt": "2026-04-06 09:07",
       "progress": 25,
       "nextAction": "待当前急件完成后再展开",
       "latestUpdate": "当前优先级让位于准实时进度展示。",
       "milestone": "一期主功能稳定后再推进",
-      "risk": "若长期延后，会影响资源统计真实性。",
+      "risk": "仍待主线稳定后排期，短期内不进入首要推进序列。",
       "phaseFlow": [
         "立项",
         "方案",
@@ -140,10 +140,10 @@
     }
   ],
   "timeline": [
-    "中书省准实时方案已出，门下省原则通过。",
-    "尚书省已将页面改造为由本地真实数据文件驱动。",
-    "当前正在补定时轮询刷新与刷新时间展示。",
-    "下一里程碑：推送 GitHub 并更新 Vercel。"
+    "尚书省已清理仓库上层删除尾账，仓库边界问题先收一层。",
+    "首页与项目页已统一为同一套更简洁的 dashboard 语言与视觉层级。",
+    "当前正补齐最新进度数据，避免页面展示停留在旧时间点。",
+    "下一里程碑：完成数据续更并进入新一轮复核。"
   ],
   "alerts": [
     {
@@ -160,7 +160,7 @@
       "levelClass": "doing",
       "status": "处理中",
       "statusClass": "doing",
-      "description": "若拉取失败，将给出轻量告警而不静默失真。"
+      "description": "当前重点转为保持进度数据与页面展示同步更新。"
     }
   ],
   "featuredProjectUrgencyLabel": "当前最紧急项目"
